@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="img/icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style/style.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <title>Gaiti Shop</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-inner">
+
+            <div class="left">
+                <a href="#">Поддержка</a>
+                <a href="#">Отзывы</a>
+            </div>
+
+            <div class="logo">
+                <img src="img/logo1.png" alt="">
+            </div>
+
+            <div class="right">
+
+                <div class="search">
+                    <input type="checkbox" id="searchToggle" class="searchToggle" />
+                    <label for="searchToggle" class="searchButton"></label>
+                    <input type="text" class="searchInput" placeholder="Поиск..." />
+                    <button class="submitButton"></button>
+                </div>
+
+
+                <div class="cart">
+                    <script src="scripts/cart.js"></script>
+                    <div class="cartButton"></div>
+                    <div class="cartDropdown">
+                        <p>Корзина пуста</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <div class="container header-inner">
+        <div class="catalog">
+            <!-- Фильтры -->
+            <div class="catalog-filters">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="tshirt">Футболки</button>
+                <button class="filter-btn" data-filter="pants">Штаны</button>
+                <button class="filter-btn" data-filter="jackets">Куртки</button>
+                <button class="filter-btn" data-filter="socks">Носки</button>
+            </div>
+
+            <!-- Сами карточки -->
+            <div class="catalog-items">
+                <div class="card" data-category="tshirt">
+                    <img src="img/tshirt_with_logo.png" alt="Футболка">
+                    <div class="card-info">
+                        <span class="name">t-shirt "matrix tripp"</span>
+                        <span class="price">2 590 ₽</span>
+                    </div>
+                </div>
+                <div class="card" data-category="pants">
+                    <img src="img/shtani.png" alt="Штаны">
+                    <div class="card-info">
+                        <span class="name">Штаны "street"</span>
+                        <span class="price">3 200 ₽</span>
+                    </div>
+                </div>
+                <div class="card" data-category="jackets">
+                    <img src="img/kurtka.png" alt="Куртка">
+                    <div class="card-info">
+                        <span class="name">Куртка "urban"</span>
+                        <span class="price">5 100 ₽</span>
+                    </div>
+                </div>
+                <div class="card" data-category="socks">
+                    <img src="img/noski.png" alt="Носки">
+                    <div class="card-info">
+                        <span class="name">Носки "cool"</span>
+                        <span class="price">490 ₽</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container header-inner">
+            <div class="footer-top">
+                <div class="footer-col">
+                    <p>© 2025 Gaiti. Все права защищены</p>
+                    <p>ИП Бубенцов И.А. ИНН: 213002160208</p>
+                    <p><a href="#">Пользовательское соглашение</a></p>
+                </div>
+                <div class="footer-col">
+                    <h3>Каталог</h3>
+                    <a href="tshorts.html">Футболки</a>
+                    <a href="shtani.html">Штаны</a>
+                    <a href="kurtki.html">Куртки</a>
+                    <a href="noski.html">Носки</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Покупателям</h3>
+                    <a href="support.html">Поддержка</a>
+                    <a href="otzivi.html">Отзывы</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Связь с нами</h3>
+                    <a href="mailto:Gaiti@gmail.com">Gaiti@gmail.com</a>
+                    <div class="social">
+                        <a href="#"><img src="img/tg.png" alt="Telegram"></a>
+                        <a href="#"><img src="img/vk.png" alt="VK"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+    <script src="scripts/catalog.js"></script>
+</body>
+
+</html>

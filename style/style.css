@@ -1,0 +1,320 @@
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:#b7b7b7;
+    color:white;
+}
+
+/* КОНТЕЙНЕР (центр) */
+.container{
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 20px;
+}
+
+/* HEADER */
+.header{
+    position:sticky;
+    top:0;
+    background:#232323;
+    z-index:100;
+}
+
+.header-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 0;
+}
+
+.left, .right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.left a{
+    color:#E7E7E7;
+    text-decoration:none;
+    font-size:25px;
+}
+
+.left a:hover{
+    color:white;
+}
+
+/* LOGO */
+.logo img{
+    height:40px;
+}
+
+/* ПОИСК */
+.search {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 50px;
+    padding: 10px 10px;
+    position: relative;
+}
+
+.searchToggle {
+    display: none;
+}
+
+/* КНОПКА (лупа / крестик) */
+.searchButton {
+    width: 40px;
+    height: 40px;
+    background: white url('../img/search.png') center/80% no-repeat;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* ПОЛЕ */
+.searchInput {
+    border: none;
+    outline: none;
+    background: none;
+    color: black;
+    width: 0;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+/* КНОПКА ПОИСКА */
+.submitButton {
+    display: none;
+    background: white;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 10px;
+    cursor: pointer;
+    background: white url('../img/search.png') center/80% no-repeat;
+}
+
+/* АКТИВНОЕ СОСТОЯНИЕ */
+.searchToggle:checked ~ .searchInput {
+    width: 160px;
+    opacity: 1;
+    margin-left: 8px;
+}
+
+.searchToggle:checked ~ .submitButton {
+    display: block;
+}
+
+/* МЕНЯЕМ ИКОНКУ НА КРЕСТИК */
+.searchToggle:checked + .searchButton {
+    background: none;
+    position: relative;
+}
+
+.searchToggle:checked + .searchButton::before {
+    content: "✖";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    color: black;
+    font-size: 20px;
+    line-height: 1;
+}
+/* КОРЗИНА */
+.cart{
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 50px;
+    padding: 10px 10px;
+    position: relative;
+}
+.cartButton{
+    width: 40px;
+    height: 40px;
+    background: white url('../img/cart.png') center/100% no-repeat;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.cartDropdown {
+    position: fixed;  /* фиксируем относительно экрана */
+    top: 90px;        /* отступ сверху */
+    right: 0;         /* всегда справа экрана */
+    width: 40vw;      /* половина экрана */
+    height: 100vh;    /* полная высота экрана */
+    background: #232323;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+
+}
+
+.cart.open .cartDropdown {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+.cart.open .cartButton {
+    background: white url('../img/krest.png') center/200% no-repeat;
+}
+/* HEADER END */
+
+/* MID */
+.catalog-filters {
+    display: flex;
+
+    gap: 25px;
+    padding-bottom: 10px;
+    margin: 30px 0;
+}
+
+.catalog-filters .filter-btn {
+    background: none;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 25px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.catalog-filters .filter-btn.active {
+    color: #000; /* чёрный для активной */
+}
+
+.catalog-filters .filter-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; /* немного ниже текста */
+    left: 0;
+    width: 100%;
+    height: 2px; /* толщина линии */
+    background-color: #000; /* цвет линии */
+}
+
+.catalog-filters .filter-btn:hover {
+    color: #000;
+}
+
+.catalog-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.card {
+    width: 380px;
+    background: #fff;
+    overflow: hidden;
+    text-align: center;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    height: 450px; /* чуть больше, чтобы было место под инфо */
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    flex-grow: 1;
+    object-fit: contain;
+}
+
+.card-info {
+    margin-top: 15px;
+}
+
+.card-info .name {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: black;
+}
+
+.card-info .price {
+    font-weight: 600;
+    color: black;
+}
+
+.card-info .price s {
+    color: black;
+    margin-left: 8px;
+}
+
+.card-info .discount {
+    color: black;
+    margin-left: 5px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+/* Футер общий */
+.footer {
+  background: #232323;
+  color: #c7c5c5;
+  font-family: 'Inter', sans-serif;
+  padding: 40px 80px 20px;
+
+}
+
+/* Верхняя часть — колонки */
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.footer-col h3 {
+  color: white;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.footer-col a {
+  display: block;
+  color: #c7c5c5;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 4px 0;
+  text-decoration: none;
+}
+
+.footer-col a:hover {
+  color: gray;
+}
+
+/* Социальные иконки */
+.social {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.social img {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s;
+}
+
+.social img:hover {
+  transform: scale(1.1);
+}
+
+
+
+
