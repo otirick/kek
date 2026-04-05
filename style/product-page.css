@@ -1,0 +1,461 @@
+/* Хлебные крошки */
+.breadcrumbs {
+    padding: 20px 0;
+    font-size: 16px;
+    color: #000;
+}
+
+.breadcrumbs a {
+    color: #000;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.breadcrumbs a:hover {
+    color: #555;
+}
+
+.breadcrumbs span {
+    margin: 0 6px;
+    color: #000;
+}
+
+.breadcrumbs .current {
+    color: #000;
+}
+
+/* Основной блок товара */
+.product-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    padding-bottom: 60px;
+}
+
+.product-gallery {
+    flex: 1;
+    max-width: 560px;
+}
+
+.product-main-img {
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.main-img-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-img-wrapper img {
+    max-width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    transition: opacity 0.3s;
+    cursor: zoom-in;
+}
+
+/* Стрелки */
+.gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s, opacity 0.3s;
+    z-index: 2;
+    opacity: 0;
+}
+
+.product-main-img:hover .gallery-arrow {
+    opacity: 1;
+}
+
+.gallery-arrow:hover {
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.gallery-arrow.prev {
+    left: 10px;
+}
+
+.gallery-arrow.next {
+    right: 10px;
+}
+
+/* Модальное окно */
+.image-modal {
+    position: fixed;
+    inset: 0;
+    background: rgb(0 0 0 / 50%);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s;
+}
+
+.image-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+    z-index: 1001;
+    transition: transform 0.3s;
+}
+
+.modal-close:hover {
+    transform: rotate(90deg);
+}
+
+.modal-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+    z-index: 1001;
+}
+
+.modal-arrow:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.modal-arrow.modal-prev {
+    left: 20px;
+}
+
+.modal-arrow.modal-next {
+    right: 20px;
+}
+
+.modal-img-wrapper {
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.modal-img-wrapper.loaded {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.modal-img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* Счётчик фото */
+.modal-counter {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.product-thumbnails {
+    display: flex;
+    gap: 10px;
+}
+
+.product-thumbnails .thumb {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-thumbnails .thumb.active {
+    border-color: #232323;
+}
+
+.product-thumbnails .thumb:hover {
+    border-color: #555;
+}
+
+.product-thumbnails .thumb img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Правая колонка — информация */
+.product-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 12px;
+}
+
+.product-price {
+    font-size: 30px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 30px;
+}
+
+/* Выбор размера */
+.size-selector {
+    margin-bottom: 25px;
+}
+
+.size-selector label {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 12px;
+}
+
+.sizes {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.size-btn {
+    min-width: 55px;
+    height: 42px;
+    padding: 0 14px;
+    background: #333;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, border-color 0.3s;
+}
+
+.size-btn:hover {
+    background: #444;
+}
+
+.size-btn.active {
+    background: #232323;
+    border-color: #fff;
+}
+
+.size-table-btn:hover {
+    color: white;
+}
+
+/* Кнопка "В корзину" */
+.product-add-btn {
+    width: 100%;
+    padding: 15px 0;
+    background: #232323;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin-bottom: 30px;
+}
+
+.product-add-btn:hover {
+    background: #404040;
+    transform: translateY(-2px);
+}
+
+.product-add-btn:active {
+    transform: translateY(0);
+    background: #111;
+}
+
+/* Описание */
+.product-details {
+    margin-bottom: 25px;
+}
+
+.product-details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.product-details ul li {
+    color: #000;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 6px;
+}
+
+.product-details ul li::before {
+    content: '– ';
+    color: #999;
+}
+
+/* Аккордеон */
+.product-accordion {
+    grid-column: 1 / -1;
+    padding-bottom: 35px;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #444;
+}
+
+.accordion-title {
+    padding: 18px 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    transition: color 0.3s;
+}
+
+.accordion-title::after {
+    content: '+';
+    font-size: 22px;
+    font-weight: 400;
+    transition: transform 0.3s;
+}
+
+.accordion-item.open .accordion-title::after {
+    content: '–';
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    color: #000;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.accordion-item.open .accordion-content {
+    max-height: 300px;
+    padding-bottom: 18px;
+}
+
+.accordion-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.accordion-content ul li {
+    margin-bottom: 6px;
+}
+
+.accordion-content ul li::before {
+    content: '– ';
+    color: #999;
+}
+
+.accordion-content p {
+    margin: 0;
+}
+
+/* Адаптивность */
+@media (max-width: 900px) {
+    .product-page {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .product-gallery {
+        max-width: 100%;
+    }
+
+    .product-main-img img {
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-title {
+        font-size: 22px;
+    }
+
+    .product-price {
+        font-size: 24px;
+    }
+
+    .product-main-img {
+        padding: 20px;
+    }
+
+    .product-main-img img {
+        max-height: 300px;
+    }
+
+    .product-thumbnails .thumb {
+        width: 60px;
+        height: 60px;
+    }
+}

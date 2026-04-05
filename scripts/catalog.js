@@ -3,13 +3,19 @@ const cards = document.querySelectorAll('.card');
 
 filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-        // Убираем активный класс у всех кнопок
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
+        // Двигаем индикатор
+        const slider = document.querySelector('.filter-slider');
+        if (slider) {
+            slider.style.width = btn.offsetWidth + 'px';
+            slider.style.left = btn.offsetLeft + 'px';
+        }
+
         const filter = btn.getAttribute('data-filter');
 
-        cards.forEach(card => {
+        cards.forEach((card) => {
             if (filter === 'all' || card.dataset.category === filter) {
                 card.style.display = 'block';
             } else {
@@ -17,4 +23,14 @@ filterBtns.forEach(btn => {
             }
         });
     });
+});
+
+// Установить индикатор на активную кнопку при загрузке
+document.addEventListener('DOMContentLoaded', () => {
+    const activeBtn = document.querySelector('.filter-btn.active');
+    const slider = document.querySelector('.filter-slider');
+    if (activeBtn && slider) {
+        slider.style.width = activeBtn.offsetWidth + 'px';
+        slider.style.left = activeBtn.offsetLeft + 'px';
+    }
 });
