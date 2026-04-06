@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # Бэкенд - FastAPI приложение
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: shop-backend
+    restart: unless-stopped
+    volumes:
+      - backend-data:/app
+    environment:
+      - DATABASE_URL=sqlite:///./shop.db
+    networks:
+      - shop-network
+
+  # Фронтенд - статические файлы на Nginx
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: shop-frontend
+    restart: unless-stopped
+    networks:
+      - shop-network
+
+  # Nginx - Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: shop-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./img:/usr/share/nginx/html/img:ro
+      - ./style:/usr/share/nginx/html/style:ro
+      - ./scripts:/usr/share/nginx/html/scripts:ro
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - shop-network
+
+volumes:
+  backend-data:
+
+networks:
+  shop-network:
+    driver: bridge

@@ -1,0 +1,10 @@
+FROM nginx:alpine
+
+# Копирование статических файлов
+COPY . /usr/share/nginx/html/
+
+# Открываем порт
+EXPOSE 80
+
+# Nginx запускается автоматически
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pyo
+*.db
+.git/
+.github/
+.idea/
+*.md
+.env
+venv/
+.env/
