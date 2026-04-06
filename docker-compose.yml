@@ -8,6 +8,8 @@ services:
       dockerfile: Dockerfile
     container_name: shop-backend
     restart: unless-stopped
+    ports:
+      - "8181:8000"
     volumes:
       - backend-data:/app
     environment:
@@ -31,8 +33,7 @@ services:
     container_name: shop-nginx
     restart: unless-stopped
     ports:
-      - "80:80"
-      - "443:443"
+      - "8081:80"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./img:/usr/share/nginx/html/img:ro
