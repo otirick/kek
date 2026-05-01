@@ -56,7 +56,7 @@
                 <span>→</span>
                 <a href="index.html">Каталог</a>
                 <span>→</span>
-                <span class="current">t-shirt "matrix tripp"</span>
+                <span class="current" id="breadcrumb-current">Загрузка...</span>
             </nav>
 
             <!-- Блок товара -->
@@ -65,28 +65,23 @@
                     <div class="product-main-img">
                         <button class="gallery-arrow prev">&#10094;</button>
                         <div class="main-img-wrapper">
-                            <img src="img/adidas.png" alt="t-shirt matrix tripp">
+                            <img id="main-product-img" src="" alt="">
                         </div>
                         <button class="gallery-arrow next">&#10095;</button>
                     </div>
-                    <div class="product-thumbnails">
-                        <div class="thumb active">
-                            <img src="img/adidas.png" alt="">
-                        </div>
-                        <div class="thumb">
-                            <img src="img/adidas.png" alt="">
-                        </div>
+                    <div class="product-thumbnails" id="product-thumbnails">
+                        <!-- Thumbnails will be injected here -->
                     </div>
                 </div>
 
                 <div class="product-info">
-                    <h1 class="product-title">t-shirt "matrix tripp"</h1>
-                    <span class="product-price">2 590 ₽</span>
+                    <h1 class="product-title" id="product-title"></h1>
+                    <span class="product-price" id="product-price"></span>
 
                     <!-- Выбор размера -->
                     <div class="size-selector">
                         <label>Размер:</label>
-                        <div class="sizes">
+                        <div class="sizes" id="size-selector-container">
                             <button class="size-btn" data-size="S">S</button>
                             <button class="size-btn" data-size="M">M</button>
                             <button class="size-btn active" data-size="L">L</button>
@@ -99,11 +94,8 @@
 
                     <!-- Описание -->
                     <div class="product-details">
-                        <ul>
-                            <li>Унисекс; Оверсайз крой</li>
-                            <li>Состав: 100% хлопок</li>
-                            <li>Шелкотрафаретная печать</li>
-                            <li>Плотность: 220 г/м²</li>
+                        <ul id="product-description-list">
+                            <!-- Description items will be injected here -->
                         </ul>
                     </div>
                 </div>
@@ -115,11 +107,8 @@
                     <div class="accordion-title">Уход</div>
                     <div class="accordion-content">
                         <div class="accordion-inner">
-                            <ul>
-                                <li>Ручная или машинная стирка до 30°C</li>
-                                <li>Глажка с паром с изнанки</li>
-                                <li>Избегать горячих поверхностей</li>
-                                <li>Сушка в разложенном виде</li>
+                            <ul id="product-care-list">
+                                <!-- Care items will be injected here -->
                             </ul>
                         </div>
                     </div>
@@ -129,10 +118,8 @@
                     <div class="accordion-title">Доставка</div>
                     <div class="accordion-content">
                         <div class="accordion-inner">
-                            <ul>
-                                <li>Доставка оплачивается получателем</li>
-                                <li>СДЭК — 2–5 дней</li>
-                                <li>Почта России — 5–10 дней</li>
+                            <ul id="product-delivery-list">
+                                <!-- Delivery items will be injected here -->
                             </ul>
                         </div>
                     </div>
@@ -142,7 +129,7 @@
                     <div class="accordion-title">Обмен и возврат</div>
                     <div class="accordion-content">
                         <div class="accordion-inner">
-                            <p>Обмен и возврат возможен в течение 14 дней с момента получения товара, при сохранении товарного вида и ярлыков.</p>
+                            <p id="product-return-text"></p>
                         </div>
                     </div>
                 </div>
@@ -195,7 +182,8 @@
         </div>
     </div>
 
+    <script src="scripts/products.js"></script>
     <script src="scripts/product-page.js"></script>
 </body>
-
 </html>
+

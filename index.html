@@ -61,48 +61,8 @@
             </div>
 
             <!-- Сами карточки -->
-            <div class="catalog-items">
-                <div class="card" data-category="tshirt">
-                    <div class="card-img">
-                        <img src="img/adidas.png" alt="Футболка">
-                    </div>
-                    <div class="card-info">
-                        <span class="name">классика</span>
-                        <span class="price">2 590 ₽</span>
-                    </div>
-                    <button class="add-to-cart-btn">В корзину</button>
-                    <a href="product.html" class="card-link"></a>
-                </div>
-                <div class="card" data-category="pants">
-                    <div class="card-img">
-                        <img src="img/yashik.png" alt="Штаны">
-                    </div>
-                    <div class="card-info">
-                        <span class="name">Ящик</span>
-                        <span class="price">3 200 ₽</span>
-                    </div>
-                    <button class="add-to-cart-btn">В корзину</button>
-                </div>
-                <div class="card" data-category="jackets">
-                    <div class="card-img">
-                        <img src="img/kurtka.png" alt="Куртка">
-                    </div>
-                    <div class="card-info">
-                        <span class="name">Куртка "urban"</span>
-                        <span class="price">5 100 ₽</span>
-                    </div>
-                    <button class="add-to-cart-btn">В корзину</button>
-                </div>
-                <div class="card" data-category="socks">
-                    <div class="card-img">
-                        <img src="img/noski.png" alt="Носки">
-                    </div>
-                    <div class="card-info">
-                        <span class="name">Носки "cool"</span>
-                        <span class="price">490 ₽</span>
-                    </div>
-                    <button class="add-to-cart-btn">В корзину</button>
-                </div>
+            <div class="catalog-items" id="catalog-items">
+                <!-- Products will be injected here by catalog.js -->
             </div>
         </div>
     </div>
@@ -140,12 +100,8 @@
         </div>
     </footer>
 
-
-
-
-
-
+    <script src="scripts/products.js"></script>
+    <script src="scripts/cart.js"></script>
     <script src="scripts/catalog.js"></script>
 </body>
-
 </html>

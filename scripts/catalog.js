@@ -1,5 +1,35 @@
 const filterBtns = document.querySelectorAll('.filter-btn');
-const cards = document.querySelectorAll('.card');
+const catalogItemsContainer = document.getElementById('catalog-items');
+
+function renderProducts(filter = 'all') {
+    if (!catalogItemsContainer) return;
+
+    catalogItemsContainer.innerHTML = '';
+
+    const filteredProducts = filter === 'all' 
+        ? products 
+        : products.filter(p => p.category === filter);
+
+    filteredProducts.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.dataset.category = product.category;
+
+        card.innerHTML = `
+            <div class="card-img">
+                <img src="${product.images[0]}" alt="${product.name}">
+            </div>
+            <div class="card-info">
+                <span class="name">${product.name}</span>
+                <span class="price">${product.price}</span>
+            </div>
+            <button class="add-to-cart-btn">В корзину</button>
+            <a href="product.html?id=${product.id}" class="card-link"></a>
+        `;
+
+        catalogItemsContainer.appendChild(card);
+    });
+}
 
 filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -14,14 +44,7 @@ filterBtns.forEach(btn => {
         }
 
         const filter = btn.getAttribute('data-filter');
-
-        cards.forEach((card) => {
-            if (filter === 'all' || card.dataset.category === filter) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
+        renderProducts(filter);
     });
 });
 
@@ -33,4 +56,5 @@ document.addEventListener('DOMContentLoaded', () => {
         slider.style.width = activeBtn.offsetWidth + 'px';
         slider.style.left = activeBtn.offsetLeft + 'px';
     }
+    renderProducts();
 });
