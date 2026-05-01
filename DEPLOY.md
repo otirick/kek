@@ -2,10 +2,9 @@
 
 ## Архитектура деплоя
 
-Проект развёртывается на VPS с использованием Docker Compose из 3 контейнеров:
-- **backend** - FastAPI приложение (Python)
+Проект развёртывается на VPS с использованием Docker Compose из 2 контейнеров:
 - **frontend** - статические файлы (копируются в nginx)
-- **nginx** - reverse proxy для маршрутизации запросов
+- **nginx** - web server
 
 ## Необходимые секреты GitHub
 
@@ -14,26 +13,14 @@
 ### 1. `VPS_SSH_KEY`
 Приватный SSH ключ для подключения к серверу.
 
-**Как создать:**
-```bash
-ssh-keygen -t ed25519 -C "github-actions"
-```
-Скопируйте содержимое файла приватного ключа (обычно `~/.ssh/id_ed25519`) в этот секрет.
-
 ### 2. `VPS_HOST`
 IP-адрес или доменное имя вашего сервера.
-
-**Пример:** `192.168.1.100` или `example.com`
 
 ### 3. `VPS_USER`
 Имя пользователя для подключения по SSH.
 
-**Пример:** `root`, `deploy`, `ubuntu`
-
 ### 4. `DEPLOY_PATH`
 Путь на сервере, куда будут копироваться файлы проекта.
-
-**Пример:** `/opt/shop` или `/home/deploy/shop`
 
 ## Как добавить секреты
 
@@ -86,11 +73,8 @@ docker compose up -d --build
 ## Структура файлов
 
 ```
-project-vladik/
+project/
 ├── .github/workflows/deploy.yml  # GitHub Actions workflow
-├── backend/
-│   ├── Dockerfile                # Dockerfile для бэкенда
-│   └── .dockerignore             # Исключения для бэкенда
 ├── Dockerfile.frontend           # Dockerfile для фронтенда
 ├── nginx.conf                    # Конфигурация nginx
 ├── docker-compose.yml            # Оркестрация контейнеров
@@ -105,21 +89,6 @@ project-vladik/
    - `docker compose down` - остановка старых контейнеров
    - `docker compose up -d --build` - сборка и запуск новых
    - `docker system prune -af` - очистка старых образов
-
-## Маршрутизация запросов
-
-- `http://your-domain/` → фронтенд (статические файлы)
-- `http://your-domain/api/*` → бэкенд (FastAPI)
-
-**Важно:** В JavaScript-коде фронтенда запросы к API должны использовать относительные пути с префиксом `/api/`:
-
-```javascript
-// Правильно:
-const res = await fetch("/api/products");
-
-// Неправильно:
-const res = await fetch("http://127.0.0.1:8000/products");
-```
 
 ## SSL/HTTPS (опционально)
 

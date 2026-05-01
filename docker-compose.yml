@@ -1,20 +1,4 @@
 services:
-  # Бэкенд - FastAPI приложение
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    container_name: shop-backend
-    restart: unless-stopped
-    ports:
-      - "8181:8000"
-    volumes:
-      - backend-data:/app
-    environment:
-      - DATABASE_URL=sqlite:///./shop.db
-    networks:
-      - shop-network
-
   # Nginx - Reverse Proxy + фронтенд
   nginx:
     build:
@@ -24,13 +8,8 @@ services:
     restart: unless-stopped
     ports:
       - "8081:80"
-    depends_on:
-      - backend
     networks:
       - shop-network
-
-volumes:
-  backend-data:
 
 networks:
   shop-network:
