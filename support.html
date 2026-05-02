@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="img/icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style/style.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <title>Поддержка - Gaiti Shop</title>
+    <style>
+        .support-section {
+            padding: 60px 0;
+            color: #232323;
+        }
+
+        .faq-container {
+            width: 100%;
+            margin: 0 0 80px 0;
+        }
+
+        .faq-container h1 {
+            text-align: left;
+            margin-bottom: 40px;
+            font-size: 36px;
+            color: #232323;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #000000;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 20px 0;
+            text-align: left;
+            background: none;
+            border: none;
+            font-size: 18px;
+            font-weight: 600;
+            color: #232323;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+
+        .faq-question::after {
+            content: '+';
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            padding: 0 0 0 0;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding-bottom: 20px;
+        }
+
+        .contact-container {
+            width: 100%;
+            max-width: none;
+            margin: 0 0 40px 0;
+            background: none;
+            padding: 0;
+            box-shadow: none;
+            color: #232323;
+        }
+
+        .contact-container h2 {
+            margin-bottom: 30px;
+            text-align: left;
+            font-size: 28px;
+            color: #232323;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #232323;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            background: #f9f9f9;
+            color: #232323;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #232323;
+            box-shadow: 0 0 0 3px rgba(35, 35, 35, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: #232323;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #404040;
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                padding: 0;
+            }
+            .faq-container h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-inner">
+            <div class="left">
+                <a href="support.html">Поддержка</a>
+                <a href="otzivi.html">Отзывы</a>
+            </div>
+            <div class="logo">
+                <a href="index.html"><img src="img/logo1.png" alt=""></a>
+            </div>
+            <div class="right">
+                <div class="cart">
+                    <div class="cartButton"></div>
+                    <div class="cartDropdown">
+                        <p>Корзина пуста</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container support-section">
+            <div class="faq-container">
+                <h1>Часто задаваемые вопросы</h1>
+
+                <div class="faq-item">
+                    <button class="faq-question">Как отследить мой заказ?</button>
+                    <div class="faq-answer">
+                        <p>Наш менеджер отправит вам трек-номер в личном сообщении или придет письмо Вам на почту. 
+                        Проверьте, пожалуйста, папку “Спам”. Если письма нет — напишите нам и мы решим ваш вопрос.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Сколько хранится мой заказ в пункте выдачи?</button>
+                    <div class="faq-answer">
+                        <p>Срок хранения и у СДЭК, и у Почты России одинаковый — 14 дней (2 недели).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Я могу получить заказ самостоятельно?</button>
+                    <div class="faq-answer">
+                        <p>Да, после оплаты заказа мы можем отправить вам товар курьером. Услуги курьера оплачиваются вами. 
+                        В этом случае заказ может быть доставлен в течение 1 дня.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Вы доставляете товары только по России?</button>
+                    <div class="faq-answer">
+                        <p>Нет, мы отправляем заказы по всему миру. Если вы хотите узнать примерные сроки и стоимость 
+                        доставки в вашу страну, напишите нам в личные сообщения — всё расскажем.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Как я могу оплатить заказ?</button>
+                    <div class="faq-answer">
+                        <p>Вы можете оплатить товар банковской картой онлайн. Мы принимаем карты платёжных систем VISA, MasterCard и МИР.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-container">
+                <h2>Напишите нам</h2>
+                <form id="support-form">
+                    <div class="form-group">
+                        <label for="name">Ваше имя</label>
+                        <input type="text" id="name" name="name" required placeholder="Иван Иванов">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="example@mail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Тема вопроса</label>
+                        <input type="text" id="subject" name="subject" required placeholder="Например: Доставка">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Сообщение</label>
+                        <textarea id="message" name="message" required placeholder="Ваш вопрос..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Отправить вопрос</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container header-inner">
+            <div class="footer-top">
+                <div class="footer-col">
+                    <p>© 2025 Gaiti. Все права защищены</p>
+                    <p>ИП Бубенцов И.А. ИНН: 213002160208</p>
+                    <p><a href="#">Пользовательское соглашение</a></p>
+                </div>
+                <div class="footer-col">
+                    <h3>Каталог</h3>
+                    <a href="tshorts.html">Футболки</a>
+                    <a href="shtani.html">Штаны</a>
+                    <a href="kurtki.html">Куртки</a>
+                    <a href="noski.html">Носки</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Покупателям</h3>
+                    <a href="support.html">Поддержка</a>
+                    <a href="otzivi.html">Отзывы</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Связь с нами</h3>
+                    <a href="mailto:Gaiti@gmail.com">Gaiti@gmail.com</a>
+                    <div class="social">
+                        <a href="#"><img src="img/tg.png" alt="Telegram"></a>
+                        <a href="#"><img src="img/vk.png" alt="VK"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/products.js"></script>
+    <script src="scripts/cart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // FAQ Accordion
+            const faqItems = document.querySelectorAll(".faq-item");
+            faqItems.forEach(item => {
+                const question = item.querySelector(".faq-question");
+                question.addEventListener("click", () => {
+                    const isActive = item.classList.contains("active");
+                    
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        otherItem.classList.remove("active");
+                    });
+
+                    // Toggle current item
+                    if (!isActive) {
+                        item.classList.add("active");
+                    }
+                });
+            });
+
+            // Support Form
+            const form = document.getElementById("support-form");
+            if (form) {
+                form.addEventListener("submit", function (event) {
+                    event.preventDefault();
+                    const formData = new FormData(form);
+                    const data = Object.fromEntries(formData.entries());
+                    console.log("Support form submitted:", data);
+                    alert("Ваш вопрос отправлен! Мы свяжемся с вами в ближайшее время.");
+                    form.reset();
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
