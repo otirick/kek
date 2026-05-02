@@ -4,7 +4,7 @@ window.products = [
         name: 'классика',
         price: '2 590 ₽',
         category: 'tshirt',
-        images: ['img/adidas.png', 'img/yashik.png'],
+        images: ['img/adidas.png', 'img/adidas.png'],
         description: [
             'Унисекс; Оверсайз крой',
             'Состав: 100% хлопок',

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // 1. --- Data Loading ---
+    // 1. --- Product Data Loading ---
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get('id');
     const product = window.products ? window.products.find(p => p.id === productId) : null;
@@ -19,10 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const careList = document.getElementById("product-care-list");
     const deliveryList = document.getElementById("product-delivery-list");
     const returnText = document.getElementById("product-return-text");
-    const cart = document.querySelector(".cart");
-    const cartButton = document.querySelector(".cartButton");
-    const sizeBtns = document.querySelectorAll(".size-btn");
-    const accordionTitles = document.querySelectorAll(".accordion-title");
+    const addBtn = document.getElementById("product-add-btn");
+    const sizeSelector = document.querySelector(".size-selector");
 
     // 3. --- Populate Content ---
     if (breadcrumbCurrent) breadcrumbCurrent.textContent = product.name;
@@ -31,6 +29,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (mainImg) {
         mainImg.src = product.images[0];
         mainImg.alt = product.name;
+    }
+
+    // Условное отображение блока размеров
+    const clothingCategories = ['tshirt', 'pants', 'jackets', 'socks'];
+    if (sizeSelector) {
+        sizeSelector.style.display = clothingCategories.includes(product.category) ? 'block' : 'none';
     }
 
     if (descriptionList) {
@@ -162,17 +166,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 6. --- UI Extras (Cart, Sizes, Accordion) ---
-    if (cartButton && cart) {
-        cartButton.addEventListener("click", (e) => {
-            e.stopPropagation();
-            cart.classList.toggle("open");
-        });
-        document.addEventListener("click", (e) => {
-            if (!cart.contains(e.target)) cart.classList.remove("open");
-        });
-    }
-
+    // 6. --- UI Extras (Sizes, Accordion) ---
+    const sizeBtns = document.querySelectorAll(".size-btn");
     sizeBtns.forEach(btn => {
         btn.addEventListener("click", function() {
             sizeBtns.forEach(b => b.classList.remove("active"));
@@ -180,9 +175,19 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    const accordionTitles = document.querySelectorAll(".accordion-title");
     accordionTitles.forEach(title => {
         title.addEventListener("click", function() {
             this.parentElement.classList.toggle("open");
         });
     });
+
+    // 7. --- Add to Cart Button (on Product Page) ---
+    if (addBtn) {
+        addBtn.addEventListener("click", () => {
+            if (window.addToCart) {
+                window.addToCart(product.id);
+            }
+        });
+    }
 });
