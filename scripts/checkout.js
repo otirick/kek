@@ -3,8 +3,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const checkoutTotalPrice = document.getElementById("checkout-total-price");
     const checkoutForm = document.getElementById("checkout-form");
 
+    function saveCart() {
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
+
     // Load cart items from localStorage
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
     if (cartItems.length === 0) {
         checkoutItemsList.innerHTML = '<p>Ваша корзина пуста</p>';
@@ -18,29 +22,47 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    // Render items
-    let totalPrice = 0;
-    cartItems.forEach(item => {
-        const numericPrice = parseInt(item.price.replace(/[^\d]/g, ''), 10);
-        totalPrice += numericPrice * item.quantity;
+    function renderItems() {
+        checkoutItemsList.innerHTML = '';
+        let totalPrice = 0;
 
-        const itemEl = document.createElement('div');
-        itemEl.className = 'checkout-item';
-        itemEl.innerHTML = `
-            <div class="checkout-item-info">
-                <img src="${item.images[0]}" class="checkout-item-img" alt="${item.name}">
-                <div>
-                    <div style="font-weight: 500;">${item.name}</div>
-                    <div style="font-size: 0.9em; color: #666;">${item.quantity} x ${item.price}</div>
+        cartItems.forEach(item => {
+            const numericPrice = parseInt(item.price.replace(/[^\d]/g, ''), 10);
+            totalPrice += numericPrice * item.quantity;
+
+            const itemEl = document.createElement('div');
+            itemEl.className = 'checkout-item';
+            itemEl.innerHTML = `
+                <div class="checkout-item-info" style="cursor: pointer;">
+                    <img src="${item.images[0]}" class="checkout-item-img" alt="${item.name}">
+                    <div>
+                        <div style="font-weight: 500;">${item.name}</div>
+                        <div style="font-size: 0.9em; color: #666;">${item.quantity} x ${item.price}</div>
+                    </div>
                 </div>
-            </div>
-        `;
-        checkoutItemsList.appendChild(itemEl);
-    });
+                <button class="remove-checkout-item" style="background:none; border:none; color:#ff4d4d; font-size:20px; cursor:pointer;">&times;</button>
+            `;
 
-    // Render total
-    const formattedTotal = totalPrice.toLocaleString('ru-RU') + ' ₽';
-    checkoutTotalPrice.innerHTML = `<span>Итого:</span> <span>${formattedTotal}</span>`;
+            itemEl.querySelector('.checkout-item-info').addEventListener('click', () => {
+                window.location.href = `product.html?id=${item.id}`;
+            });
+
+            itemEl.querySelector('.remove-checkout-item').addEventListener('click', (e) => {
+                e.stopPropagation();
+                cartItems = cartItems.filter(i => i.id !== item.id);
+                saveCart();
+                renderItems();
+            });
+
+            checkoutItemsList.appendChild(itemEl);
+        });
+
+        const formattedTotal = totalPrice.toLocaleString('ru-RU') + ' ₽';
+        checkoutTotalPrice.innerHTML = `<span>Итого:</span> <span>${formattedTotal}</span>`;
+    }
+
+    // Initial render
+    renderItems();
 
     // Handle form submission
     checkoutForm.addEventListener("submit", function (event) {
@@ -52,13 +74,12 @@ document.addEventListener("DOMContentLoaded", function () {
             address: formData.get('address'),
             phone: formData.get('phone'),
             email: formData.get('email'),
-            postalCode: formData.get('postalCode'),
         };
 
         console.log("Order submitted:", {
             customer: customerData,
             items: cartItems,
-            total: formattedTotal
+            total: checkoutTotalPrice.textContent
         });
 
         alert(`Спасибо за заказ, ${customerData.fullname}! Мы свяжемся с вами по номеру ${customerData.phone}.`);
