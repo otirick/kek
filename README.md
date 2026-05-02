@@ -1,62 +1,42 @@
-# Магазин фирменной и сувенирной продукции
+# Prostranstvo Shop
 
-Магазин фирменной и сувенирной продукции с веб-интерфейсом.
+A web application for a specialty and souvenir products store, built with vanilla JavaScript, HTML5, and CSS3. It features a dynamic product catalog, detailed product pages, a shopping cart with persistent storage, a checkout process, a support/FAQ section, and a customer reviews page.
 
-## Структура проекта
+## Project Structure
 
-- `index.html` — главная страница (каталог)
-- `product.html` — страница товара
-- `scripts/` — клиентские JavaScript-скрипты
-  - `products.js` — централизованный список всех товаров
-  - `catalog.js` — отображение каталога и фильтрация товаров
-  - `cart.js` — корзина
-  - `product-page.js` — логика страницы товара (размеры, галерея, модалка, загрузка данных)
-- `style/` — CSS-стили
-  - `style.css` — основные стили
-  - `product-page.css` — стили страницы товара
-- `img/` — изображения
+- `index.html` — Main catalog page
+- `product.html` — Product detail page
+- `checkout.html` — Checkout page
+- `support.html` — Support and FAQ page
+- `otzivi.html` — Reviews page
+- `scripts/` — Client-side JavaScript logic
+  - `products.js` — Product data
+  - `catalog.js` — Catalog management and filtering
+  - `cart.js` — Shopping cart functionality
+  - `product-page.js` — Product page logic
+  - `checkout.js` — Checkout process logic
+- `style/` — CSS stylesheets
+  - `style.css` — Global styles
+  - `product-page.css` — Product page specific styles
+  - `checkout.css` — Checkout page specific styles
+  - `support.css` — Support page specific styles
+- `img/` — Images
+- `AGENTS.md` — Agent instructions
 
-## Функционал
+## Key Features
 
-- Каталог товаров с фильтрацией по категориям
-- Страница товара с галереей, выбором размера и аккордеоном (уход, доставка, возврат)
-- Просмотр фото на весь экран с навигацией и счётчиком
-- Корзина с выпадающим меню
-- Адаптивная вёрстка (десктоп, планшет, мобильный)
-- Footer прижат к низу страницы
+- **Dynamic Catalog**: Browsing and filtering products by category.
+- **Product Details**: Detailed view with image gallery, size selection, and product info.
+- **Shopping Cart**: Add/remove items, persistent storage via `localStorage`, and smooth UI.
+- **Checkout Flow**: A dedicated page for entering delivery and contact information.
+- **Support & FAQ**: Information about delivery, payment, and an interactive FAQ accordion.
+- **Customer Reviews**: A dedicated page for viewing customer feedback and popular products.
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices.
 
-### Загрузка данных через URL-параметры
+## Installation and Running
 
-Страница товара (`product.html`) динамически загружает информацию о продукте на основе идентификатора, переданного в URL. Это позволяет использовать одну и ту же HTML-страницу для отображения любого товара из каталога.
+Simply open `index.html` in any modern web browser to view the application.
 
-**Как это работает:**
-1. В каталоге (`index.html`) каждая карточка товара содержит ссылку вида `product.html?id=product-id`.
-2. При переходе на страницу `product.html`, скрипт `product-page.js` считывает параметр `id` из строки запроса.
-3. Скрипт ищет товар с соответствующим `id` в массиве `products` (который находится в `scripts/products.js`).
-4. Если товар найден, все данные (название, цена, изображения, описание и т.д.) автоматически подставляются в соответствующие элементы страницы.
-
-## Инструкция по использованию
-
-### Как посмотреть конкретный товар напрямую
-
-Если вы хотите открыть страницу определенного товара, не проходя через каталог, вы можете вручную добавить параметр `id` к URL страницы `product.html`.
-
-**Пример:**
-Чтобы открыть страницу классической футболки, используйте URL:
-`product.html?id=tshirt-classic`
-
-**Доступные ID товаров:**
-- `tshirt-classic`
-- `pants-yashik`
-- `jacket-urban`
-- `socks-cool`
-
-## Установка и запуск
-
-### Фронтенд
-
-Откройте `index.html` в браузере.
-
-## Репозиторий
+## Repository
 
 https://github.com/otirick/kek
