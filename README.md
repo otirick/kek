@@ -1,42 +1,44 @@
 # Prostranstvo Shop
 
-A web application for a specialty and souvenir products store, built with vanilla JavaScript, HTML5, and CSS3. It features a dynamic product catalog, detailed product pages, a shopping cart with persistent storage, a checkout process, a support/FAQ section, and a customer reviews page.
+Веб-приложение для магазина фирменной и сувенирной продукции, созданное с использованием vanilla JavaScript, HTML5 и CSS3. Проект включает в себя динамический каталог товаров, подробные страницы товаров, корзину с сохранением данных, процесс оформления заказа, раздел поддержки с FAQ и страницу с отзывами покупателей.
 
-## Project Structure
+## Структура проекта
 
-- `index.html` — Main catalog page
-- `product.html` — Product detail page
-- `checkout.html` — Checkout page
-- `support.html` — Support and FAQ page
-- `otzivi.html` — Reviews page
-- `scripts/` — Client-side JavaScript logic
-  - `products.js` — Product data
-  - `catalog.js` — Catalog management and filtering
-  - `cart.js` — Shopping cart functionality
-  - `product-page.js` — Product page logic
-  - `checkout.js` — Checkout process logic
-- `style/` — CSS stylesheets
-  - `style.css` — Global styles
-  - `product-page.css` — Product page specific styles
-  - `checkout.css` — Checkout page specific styles
-  - `support.css` — Support page specific styles
-- `img/` — Images
-- `AGENTS.md` — Agent instructions
+- `index.html` — Главная страница (каталог)
+- `product.html` — Страница товара
+- `checkout.html` — Страница оформления заказа
+- `support.html` — Страница поддержки и FAQ
+- `otzivi.html` — Страница с отзывами
+- `scripts/` — Клиентская логика на JavaScript
+  - `products.js` — Данные о товарах
+  - `catalog.js` — Управление каталогом и фильтрация
+  - `cart.js` — Функционал корзины
+  - `product-page.js` — Логика страницы товара
+  - `checkout.js` — Логика оформления заказа
+- `style/` — CSS-стили
+  - `style.css` — Глобальные стили
+  - `product-page.css` — Стили страницы товара
+  - `checkout.css` — Стили страницы оформления заказа
+  - `support.css` — Стили страницы поддержки
+- `img/` — Изображения
+- `AGENTS.md` — Инструкции для агентов
 
-## Key Features
+## Основные возможности
 
-- **Dynamic Catalog**: Browsing and filtering products by category.
-- **Product Details**: Detailed view with image gallery, size selection, and product info.
-- **Shopping Cart**: Add/remove items, persistent storage via `localStorage`, and smooth UI.
-- **Checkout Flow**: A dedicated page for entering delivery and contact information.
-- **Support & FAQ**: Information about delivery, payment, and an interactive FAQ accordion.
-- **Customer Reviews**: A dedicated page for viewing customer feedback and popular products.
-- **Responsive Design**: Optimized for desktop, tablet, and mobile devices.
+- **Динамический каталог**: Просмотр и фильтрация товаров по категориям.
+- **Карточка товара**: Детальный просморт с галереей изображений, выбором размера и информацией о товаре.
+- **Корзина**: Добавление/удаление товаров, сохранение данных через `localStorage` и удобный интерфейс.
+- **Оформление заказа**: Специальная страница для ввода данных о доставке и контактах.
+- **Поддержка и FAQ**: Информация о доставке, оплате и интерактивный аккордеон с частыми вопросами.
+- **Отзывы клиентов**: Отдельная страница с отзывами и популярными товарами.
+- **Адаптивный дизайн**: Оптимизация под десктопы, планшеты и мобильные устройства.
 
-## Installation and Running
+## Инструкция по использованию
 
-Simply open `index.html` in any modern web browser to view the application.
+### Запуск
 
-## Repository
+Просто откройте `index.html` в любом современном браузере для запуска приложения.
+
+## Репозиторий
 
 https://github.com/otirick/kek
