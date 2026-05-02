@@ -83,6 +83,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                     <button class="remove-from-cart" data-id="${item.id}">&times;</button>
                 `;
+                itemEl.querySelector('.cart-item-info').addEventListener('click', () => {
+                    window.location.href = `product.html?id=${item.id}`;
+                });
                 itemEl.querySelector('.remove-from-cart').addEventListener('click', (e) => {
                     e.stopPropagation();
                     removeFromCart(item.id);
