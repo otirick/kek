@@ -5,132 +5,32 @@
     <meta charset="UTF-8">
     <link rel="icon" href="img/icon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style/style.css" type="text/css">
+    <link rel="stylesheet" href="style/checkout.css" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
     <title>Оформление заказа - Gaiti Shop</title>
-    <style>
-        h2{
-            margin-bottom: 20px;
-        }
-        .checkout-container {
-            display: flex;
-            gap: 40px;
-            padding: 40px 0;
-            align-items: flex-start;
-        }
-
-        .checkout-form {
-            flex: 2;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            color: black;
-        }
-
-        .checkout-summary {
-            flex: 1;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            color: black;
-            position: sticky;
-            top: 100px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .checkout-items {
-            margin-bottom: 20px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 20px;
-        }
-
-        .checkout-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .checkout-item-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .checkout-item-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 4px;
-        }
-
-        .checkout-total {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 700;
-            font-size: 1.2em;
-            margin-top: 10px;
-        }
-
-        .submit-order-btn {
-            width: 100%;
-            padding: 15px;
-            background: #232323;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: background 0.3s;
-        }
-
-        .submit-order-btn:hover {
-            background: #404040;
-        }
-
-        @media (max-width: 768px) {
-            .checkout-container {
-                flex-direction: column;
-            }
-            .checkout-summary {
-                position: static;
-                width: 100%;
-            }
-        }
-    </style>
 </head>
 
 <body>
     <header class="header">
         <div class="container header-inner">
             <div class="left">
-                <a href="index.html">Каталог</a>
+                <a href="support.html">Поддержка</a>
+                <a href="#">Отзывы</a>
             </div>
             <div class="logo">
                 <a href="index.html"><img src="img/logo1.png" alt=""></a>
             </div>
             <div class="right">
+                <div class="search">
+                    <input type="checkbox" id="searchToggle" class="searchToggle" />
+                    <label for="searchToggle" class="searchButton"></label>
+                    <input type="text" class="searchInput" placeholder="Поиск..." />
+                    <button class="submitButton"></button>
+                </div>
                 <div class="cart">
                     <div class="cartButton"></div>
                     <div class="cartDropdown">
