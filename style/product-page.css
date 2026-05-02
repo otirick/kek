@@ -1,3 +1,7 @@
+.search{
+           visibility: hidden;
+       }
+
 /* Хлебные крошки */
 .breadcrumbs {
     padding: 20px 0;
