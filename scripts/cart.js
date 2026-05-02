@@ -2,28 +2,32 @@
 let cartItems = [];
 
 document.addEventListener("DOMContentLoaded", function () {
-    const cartDropdown = document.querySelector(".cartDropdown");
+    const cart = document.querySelector(".cart");
     const cartButton = document.querySelector(".cartButton");
+    const cartDropdown = document.querySelector(".cartDropdown");
 
-    // Открытие/закрытие корзины
-    if (cartButton) {
-        cartButton.addEventListener("click", function (event) {
-            event.stopPropagation();
-            document.querySelector(".cart").classList.toggle("open");
-        });
+    if (!cart || !cartButton || !cartDropdown) {
+        console.error("Cart elements not found!");
+        return;
     }
 
+    // Открытие/закрытие корзины
+    cartButton.addEventListener("click", function (event) {
+        event.stopPropagation();
+        cart.classList.toggle("open");
+    });
+
     document.addEventListener("click", function (event) {
-        const cart = document.querySelector(".cart");
-        if (cart && !cart.contains(event.target)) {
+        if (!cart.contains(event.target)) {
             cart.classList.remove("open");
         }
     });
 
     // Делегирование событий для кнопок "В корзину"
     document.addEventListener("click", function (event) {
-        if (event.target.classList.contains("add-to-cart-btn")) {
-            const productId = event.target.dataset.productId;
+        const btn = event.target.closest(".add-to-cart-btn");
+        if (btn) {
+            const productId = btn.dataset.productId;
             if (productId) {
                 window.addToCart(productId);
             }
@@ -46,11 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateCartUI() {
         // Обновление счетчика на кнопке корзины
-        const cartBadge = document.querySelector(".cartButton");
         const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-        
-        // Создаем или обновляем бейдж
-        let badge = document.querySelector(".cartBadge");
+        let badge = cartButton.querySelector(".cartBadge");
         if (!badge) {
             badge = document.createElement("span");
             badge.className = "cartBadge";
@@ -60,35 +61,46 @@ document.addEventListener("DOMContentLoaded", function () {
         badge.style.display = totalItems > 0 ? "block" : "none";
 
         // Обновление списка внутри выпадающего меню
-        if (cartDropdown) {
-            if (cartItems.length === 0) {
-                cartDropdown.innerHTML = '<p>Корзина пуста</p>';
-            } else {
-                cartDropdown.innerHTML = '';
-                cartItems.forEach(item => {
-                    const itemEl = document.createElement('div');
-                    itemEl.className = 'cart-item';
-                    itemEl.innerHTML = `
-                        <div class="cart-item-info">
+        if (cartItems.length === 0) {
+            cartDropdown.innerHTML = '<p>Корзина пуста</p>';
+        } else {
+            cartDropdown.innerHTML = '';
+            let totalPrice = 0;
+
+            cartItems.forEach(item => {
+                const numericPrice = parseInt(item.price.replace(/[^\d]/g, ''), 10);
+                totalPrice += numericPrice * item.quantity;
+
+                const itemEl = document.createElement('div');
+                itemEl.className = 'cart-item';
+                itemEl.innerHTML = `
+                    <div class="cart-item-info">
+                        <img src="${item.images[0]}" class="cart-item-img" alt="">
+                        <div class="cart-item-text">
                             <span class="cart-item-name">${item.name}</span>
                             <span class="cart-item-qty">${item.quantity} x ${item.price}</span>
                         </div>
-                        <button class="remove-from-cart" data-id="${item.id}">&times;</button>
-                    `;
-                    itemEl.querySelector('.remove-from-cart').addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        removeFromCart(item.id);
-                    });
-                    cartDropdown.appendChild(itemEl);
+                    </div>
+                    <button class="remove-from-cart" data-id="${item.id}">&times;</button>
+                `;
+                itemEl.querySelector('.remove-from-cart').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    removeFromCart(item.id);
                 });
-                
-                // Добавляем кнопку оформления заказа, если есть товары
-                const orderBtn = document.createElement('button');
-                orderBtn.className = 'order-btn';
-                orderBtn.textContent = 'Оформить заказ';
-                orderBtn.onclick = () => alert('Заказ оформлен! (Демо)');
-                cartDropdown.appendChild(orderBtn);
-            }
+                cartDropdown.appendChild(itemEl);
+            });
+
+            const totalEl = document.createElement('div');
+            totalEl.className = 'cart-total';
+            const formattedTotal = totalPrice.toLocaleString('ru-RU') + ' ₽';
+            totalEl.innerHTML = `<span>Итого:</span> <span>${formattedTotal}</span>`;
+            cartDropdown.appendChild(totalEl);
+
+            const orderBtn = document.createElement('button');
+            orderBtn.className = 'order-btn';
+            orderBtn.textContent = 'Оформить заказ';
+            orderBtn.onclick = () => alert('Заказ оформлен! Сумма: ' + totalPrice.toLocaleString('ru-RU') + ' ₽');
+            cartDropdown.appendChild(orderBtn);
         }
     }
 
@@ -100,3 +112,4 @@ document.addEventListener("DOMContentLoaded", function () {
     // Инициализация
     updateCartUI();
 });
+
