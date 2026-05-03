@@ -5,90 +5,14 @@
     <meta charset="UTF-8">
     <link rel="icon" href="img/icon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style/style.css" type="text/css">
+    <link rel="stylesheet" href="style/otzivi.css" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
-    <title>Отзывы - Gaiti Shop</title>
-    <style>
-        .reviews-section {
-            padding: 60px 0;
-            background-color: #ffffff;
-        }
+    <title>Отзывы - Prostranstvo</title>
 
-        .reviews-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .reviews-container h1 {
-            text-align: center;
-            margin-bottom: 50px;
-            font-size: 36px;
-            color: #232323;
-        }
-
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 80px;
-        }
-
-        .review-card {
-            background: #f9f9f9;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-
-        .review-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .review-rating {
-            color: #ffcc00;
-            font-size: 20px;
-            margin-bottom: 15px;
-        }
-
-        .review-text {
-            font-size: 16px;
-            color: #444;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .review-author {
-            font-weight: 700;
-            color: #232323;
-            font-size: 18px;
-        }
-
-        .products-section {
-            padding-top: 40px;
-            border-top: 1px solid #eee;
-        }
-
-        .products-section h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 28px;
-            color: #232323;
-        }
-
-        .products-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
-            justify-content: center;
-        }
-
-        /* Reuse .card from catalog.css if possible, but we'll define it here for safety or rely on index.html/catalog.js style */
-    </style>
 </head>
 
 <body>
@@ -126,12 +50,7 @@
                     <!-- Reviews will be injected here -->
                 </div>
 
-                <section class="products-section">
-                    <h2>Популярные товары</h2>
-                    <div id="products-grid" class="products-grid">
-                        <!-- Random products will be injected here -->
-                    </div>
-                </section>
+
             </div>
         </section>
     </main>
@@ -140,7 +59,7 @@
         <div class="container header-inner">
             <div class="footer-top">
                 <div class="footer-col">
-                    <p>© 2025 Gaiti. Все права защищены</p>
+                    <p>© 2025 Prostranstvo. Все права защищены</p>
                     <p>ИП Бубенцов И.А. ИНН: 213002160208</p>
                     <p><a href="#">Пользовательское соглашение</a></p>
                 </div>
@@ -158,7 +77,7 @@
                 </div>
                 <div class="footer-col">
                     <h3>Связь с нами</h3>
-                    <a href="mailto:Gaiti@gmail.com">Gaiti@gmail.com</a>
+                    <a href="mailto:Prostranstvo@gmail.com">Prostranstvo@gmail.com</a>
                     <div class="social">
                         <a href="#"><img src="img/tg.png" alt="Telegram"></a>
                         <a href="#"><img src="img/vk.png" alt="VK"></a>
@@ -168,7 +87,6 @@
         </div>
     </footer>
 
-    <script src="scripts/products.js"></script>
     <script src="scripts/cart.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -183,38 +101,17 @@
 
             const reviewsGrid = document.getElementById("reviews-grid");
             // Shuffle and pick a few reviews
-            const shuffledReviews = reviews.sort(() => 0.5 - Math.random()).slice(0, 4);
+            const shuffledReviews = reviews.sort(() => 0.5 - Math.random()).slice(0, 6);
 
             shuffledReviews.forEach(rev => {
                 const card = document.createElement('div');
                 card.className = 'review-card';
                 card.innerHTML = `
+                    <div class="review-author">${rev.name}</div>
                     <div class="review-rating">${"★".repeat(rev.rating)}${"☆".repeat(5 - rev.rating)}</div>
                     <div class="review-text">"${rev.text}"</div>
-                    <div class="review-author">${rev.name}</div>
                 `;
                 reviewsGrid.appendChild(card);
-            });
-
-            // Random products
-            const productsGrid = document.getElementById("products-grid");
-            const shuffledProducts = window.products.sort(() => 0.5 - Math.random()).slice(0, 3);
-
-            shuffledProducts.forEach(prod => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <a href="product.html?id=${prod.id}" class="card-link"></a>
-                    <div class="card-img">
-                        <img src="${prod.images[0]}" alt="${prod.name}">
-                    </div>
-                    <div class="card-info">
-                        <span class="name">${prod.name}</span>
-                        <span class="price">${prod.price}</span>
-                    </div>
-                    <button class="add-to-cart-btn" data-product-id="${prod.id}">В корзину</button>
-                `;
-                productsGrid.appendChild(card);
             });
         });
     </script>

@@ -6,7 +6,7 @@ html, body {
 
 body{
     font-family:'Inter',sans-serif;
-    background:#b7b7b7;
+    background: white url('../img/po-2.jpg');
     color:white;
     display: flex;
     flex-direction: column;
@@ -14,14 +14,16 @@ body{
 }
 
 main {
+    min-height: 100%;
     flex: 1 0 auto;
+    backdrop-filter: blur(5px);
 }
 
 /* КОНТЕЙНЕР (центр) */
 .container{
     max-width:1200px;
     margin:0 auto;
-    padding:0px;
+    padding: 0px;
 }
 
 /* HEADER */
@@ -234,7 +236,7 @@ main {
 
 .cart-item-qty {
     font-size: 13px;
-    color: #666;
+    color: #bebebe;
 }
 
 .remove-from-cart {
@@ -274,6 +276,7 @@ main {
 }
 
 /* HEADER END */
+
 
 /* MID */
 .catalog-filters {
@@ -431,7 +434,7 @@ main {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 201px;
+   gap: 176px;
 }
 
 .footer-col h3 {
@@ -470,12 +473,18 @@ main {
 }
 
 @media (max-width: 1100px) {
+    .container {
+    margin: 25px;
+}
   .footer-top {
     gap: 40px;
   }
 }
 
 @media (max-width: 700px) {
+    .container {
+    margin: 25px;
+}
   .footer-top {
     gap: 30px;
     justify-content: center;
@@ -486,6 +495,9 @@ main {
 }
 
 @media (max-width: 480px) {
+    .container {
+    margin: 25px;
+}
   .footer-top {
     flex-direction: column;
     align-items: center;
