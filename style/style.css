@@ -34,11 +34,19 @@ main {
     z-index:100;
 }
 
-.header-inner{
+.header .header-inner{
     display:flex;
-    justify-content:space-between;
     align-items:center;
     padding:25px 0;
+}
+
+.header .left {
+    flex: 1;
+}
+
+.header .right {
+    flex: 1;
+    justify-content: flex-end;
 }
 
 .left, .right{
@@ -298,6 +306,7 @@ main {
     position: relative;
     color: #000;
     z-index: 1;
+    width: 100%;
 }
 
 .filter-slider {

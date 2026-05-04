@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Условное отображение блока размеров
-    const clothingCategories = ['tshirt', 'pants', 'jackets', 'socks'];
+    const clothingCategories = ['Odezda'];
     if (sizeSelector) {
         sizeSelector.style.display = clothingCategories.includes(product.category) ? 'block' : 'none';
     }

@@ -3,7 +3,7 @@ window.products = [
         id: 'adidas',
         name: 'классика',
         price: '2 590 ₽',
-        category: 'tshirt',
+        category: 'Odezda',
         images: ['img/adidas.png', 'img/adidas.png'],
         description: [
             'Унисекс; Оверсайз крой',
@@ -28,7 +28,7 @@ window.products = [
         id: 'kostumadidas',
         name: 'Ящик',
         price: '3 200 ₽',
-        category: 'pants',
+        category: 'Odezda',
         images: ['img/kostumadidas.png'],
         description: [
             'Удобный крой',
@@ -47,7 +47,7 @@ window.products = [
         id: 'shtani',
         name: 'Штаны',
         price: '5 100 ₽',
-        category: 'jackets',
+        category: 'Odezda',
         images: ['img/shtani.png'],
         description: [
             'Защита от ветра',
@@ -65,7 +65,7 @@ window.products = [
         id: 'bomber',
         name: 'Бомбер',
         price: '5 100 ₽',
-        category: 'jackets',
+        category: 'Odezda',
         images: ['img/bomber.png'],
         description: [
             'Защита от ветра',
@@ -83,7 +83,7 @@ window.products = [
         id: 'fufayka',
         name: 'Фуфайка',
         price: '5 100 ₽',
-        category: 'jackets',
+        category: 'Odezda',
         images: ['img/fufayka.png'],
         description: [
             'Защита от ветра',
@@ -101,7 +101,7 @@ window.products = [
         id: 'roba',
         name: 'Роба',
         price: '5 100 ₽',
-        category: 'jackets',
+        category: 'Odezda',
         images: ['img/roba.png'],
         description: [
             'Защита от ветра',
@@ -119,7 +119,7 @@ window.products = [
         id: 'yshanka',
         name: 'Шапка ушанка',
         price: '5 100 ₽',
-        category: 'jackets',
+        category: 'Odezda',
         images: ['img/yshanka.png'],
         description: [
             'Защита от ветра',
@@ -137,7 +137,7 @@ window.products = [
         id: 'platok',
         name: 'Платок на голову',
         price: '5 100 ₽',
-        category: 'jackets',
+        category: 'Odezda',
         images: ['img/platok.png'],
         description: [
             'Защита от ветра',
@@ -155,7 +155,7 @@ window.products = [
         id: 'sviter2',
         name: 'Свитер',
         price: '5 100 ₽',
-        category: 'jackets',
+        category: 'Odezda',
         images: ['img/sviter2.png'],
         description: [
             'Защита от ветра',
@@ -173,7 +173,7 @@ window.products = [
         id: 'sviter-tot-sami',
         name: 'Свиттер',
         price: '490 ₽',
-        category: 'socks',
+        category: 'Odezda',
         images: ['img/sviter-tot-sami.png'],
         description: [
             'Мягкий хлопок',
@@ -191,7 +191,7 @@ window.products = [
         id: 'kepka koz',
         name: 'Кепка с козырьком',
         price: '5 100 ₽',
-        category: 'jackets',
+        category: 'Odezda',
         images: ['img/kepka koz.jpg'],
         description: [
             'Защита от ветра',
@@ -209,7 +209,7 @@ window.products = [
         id: 'kgb',
         name: 'плащ кгб',
         price: '5 100 ₽',
-        category: 'jackets',
+        category: 'Odezda',
         images: ['img/kgb.png'],
         description: [
             'Защита от ветра',
@@ -227,7 +227,7 @@ window.products = [
         id: 'palto',
         name: 'Пальто',
         price: '5 100 ₽',
-        category: 'jackets',
+        category: 'Odezda',
         images: ['img/palto.png'],
         description: [
             'Защита от ветра',
@@ -245,7 +245,7 @@ window.products = [
         id: 'sapogi',
         name: 'Кирзовые сапоги',
         price: '5 100 ₽',
-        category: 'jackets',
+        category: 'Odezda',
         images: ['img/sapogi.png'],
         description: [
             'Защита от ветра',
@@ -263,7 +263,7 @@ window.products = [
         id: 'tufli-myzh',
         name: 'Туфли',
         price: '5 100 ₽',
-        category: 'jackets',
+        category: 'Odezda',
         images: ['img/tufli-myzh.png'],
         description: [
             'Защита от ветра',
@@ -281,8 +281,170 @@ window.products = [
         id: 'valenki',
         name: 'Валенки',
         price: '5 100 ₽',
-        category: 'jackets',
+        category: 'Odezda',
         images: ['img/valenki.jpg'],
+        description: [
+            'Защита от ветра',
+            'Стильный дизайн'
+        ],
+        care: [
+            'Только сухая чистка'
+        ],
+        delivery: [
+            'Доставка курьером'
+        ],
+        return: 'Возврат в течение 14 дней.'
+    },
+    {
+        id: 'kover',
+        name: 'Красный ковер',
+        price: '5 100 ₽',
+        category: 'tovari',
+        images: ['img/kover.png'],
+        description: [
+            'Защита от ветра',
+            'Стильный дизайн'
+        ],
+        care: [
+            'Только сухая чистка'
+        ],
+        delivery: [
+            'Доставка курьером'
+        ],
+        return: 'Возврат в течение 14 дней.'
+    },
+    {
+        id: 'paketspaketami',
+        name: 'Пакет с пакетами',
+        price: '5 100 ₽',
+        category: 'tovari',
+        images: ['img/paketspaketami.png'],
+        description: [
+            'Защита от ветра',
+            'Стильный дизайн'
+        ],
+        care: [
+            'Только сухая чистка'
+        ],
+        delivery: [
+            'Доставка курьером'
+        ],
+        return: 'Возврат в течение 14 дней.'
+    },
+    {
+        id: 'yashik',
+        name: 'Ящик',
+        price: '5 100 ₽',
+        category: 'tovari',
+        images: ['img/yashik.png'],
+        description: [
+            'Защита от ветра',
+            'Стильный дизайн'
+        ],
+        care: [
+            'Только сухая чистка'
+        ],
+        delivery: [
+            'Доставка курьером'
+        ],
+        return: 'Возврат в течение 14 дней.'
+    },
+    {
+        id: 'pult',
+        name: 'Пульт в пакете',
+        price: '5 100 ₽',
+        category: 'tovari',
+        images: ['img/pult.png'],
+        description: [
+            'Защита от ветра',
+            'Стильный дизайн'
+        ],
+        care: [
+            'Только сухая чистка'
+        ],
+        delivery: [
+            'Доставка курьером'
+        ],
+        return: 'Возврат в течение 14 дней.'
+    },
+    {
+        id: 'stakan-pust',
+        name: 'Граненый стакан наполовину пустой',
+        price: '5 100 ₽',
+        category: 'tovari',
+        images: ['img/stakan.png'],
+        description: [
+            'Защита от ветра',
+            'Стильный дизайн'
+        ],
+        care: [
+            'Только сухая чистка'
+        ],
+        delivery: [
+            'Доставка курьером'
+        ],
+        return: 'Возврат в течение 14 дней.'
+    },
+    {
+        id: 'stakan-poln',
+        name: 'Граненый стакан наполовину полный',
+        price: '5 100 ₽',
+        category: 'tovari',
+        images: ['img/stakan.png'],
+        description: [
+            'Защита от ветра',
+            'Стильный дизайн'
+        ],
+        care: [
+            'Только сухая чистка'
+        ],
+        delivery: [
+            'Доставка курьером'
+        ],
+        return: 'Возврат в течение 14 дней.'
+    },
+    {
+        id: 'hleb',
+        name: 'Хлеб',
+        price: '5 100 ₽',
+        category: 'tovari',
+        images: ['img/hleb.png'],
+        description: [
+            'Защита от ветра',
+            'Стильный дизайн'
+        ],
+        care: [
+            'Только сухая чистка'
+        ],
+        delivery: [
+            'Доставка курьером'
+        ],
+        return: 'Возврат в течение 14 дней.'
+    },
+    {
+        id: 'voda',
+        name: 'Вода в стеклянной бутылке',
+        price: '5 100 ₽',
+        category: 'tovari',
+        images: ['img/voda.png'],
+        description: [
+            'Защита от ветра',
+            'Стильный дизайн'
+        ],
+        care: [
+            'Только сухая чистка'
+        ],
+        delivery: [
+            'Доставка курьером'
+        ],
+        return: 'Возврат в течение 14 дней.'
+    },
+    {
+        id: 'cybertrak',
+        name: 'Деревянный кибертрак',
+        price: '5 100 ₽',
+        category: 'tovari',
+        images: ['img/cybertrak.png'],
         description: [
             'Защита от ветра',
             'Стильный дизайн'

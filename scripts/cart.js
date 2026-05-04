@@ -43,6 +43,12 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addToCart = function(productId) {
         const product = window.products.find(p => p.id === productId);
         if (product) {
+            const currentTotal = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+            if (currentTotal >= 5) {
+                alert("В один заказ можно добавить только 5 товаров");
+                return;
+            }
+
             const existingItem = cartItems.find(item => item.id === productId);
             if (existingItem) {
                 existingItem.quantity += 1;
