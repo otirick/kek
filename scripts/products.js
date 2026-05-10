@@ -440,6 +440,60 @@ window.products = [
         return: 'Возврат в течение 14 дней.'
     },
     {
+        id: 'spichki',
+        name: 'Спички',
+        price: '5 100 ₽',
+        category: 'tovari',
+        images: ['img/spichki.png'],
+        description: [
+            'Защита от ветра',
+            'Стильный дизайн'
+        ],
+        care: [
+            'Только сухая чистка'
+        ],
+        delivery: [
+            'Доставка курьером'
+        ],
+        return: 'Возврат в течение 14 дней.'
+    },
+    {
+        id: 'stolkniga',
+        name: 'Стол книжка',
+        price: '5 100 ₽',
+        category: 'tovari',
+        images: ['img/stolkniga.png'],
+        description: [
+            'Защита от ветра',
+            'Стильный дизайн'
+        ],
+        care: [
+            'Только сухая чистка'
+        ],
+        delivery: [
+            'Доставка курьером'
+        ],
+        return: 'Возврат в течение 14 дней.'
+    },
+    {
+        id: 'lebed',
+        name: 'Лебедь из покрышки',
+        price: '5 100 ₽',
+        category: 'tovari',
+        images: ['img/lebed.png'],
+        description: [
+            'Защита от ветра',
+            'Стильный дизайн'
+        ],
+        care: [
+            'Только сухая чистка'
+        ],
+        delivery: [
+            'Доставка курьером'
+        ],
+        return: 'Возврат в течение 14 дней.'
+    },
+    {
         id: 'cybertrak',
         name: 'Деревянный кибертрак',
         price: '5 100 ₽',
