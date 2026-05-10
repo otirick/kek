@@ -493,23 +493,4 @@ window.products = [
         ],
         return: 'Возврат в течение 14 дней.'
     },
-    {
-        id: 'cybertrak',
-        name: 'Деревянный кибертрак',
-        price: '5 100 ₽',
-        category: 'tovari',
-        images: ['img/cybertrak.png'],
-        description: [
-            'Защита от ветра',
-            'Стильный дизайн'
-        ],
-        care: [
-            'Только сухая чистка'
-        ],
-        delivery: [
-            'Доставка курьером'
-        ],
-        return: 'Возврат в течение 14 дней.'
-    },
-
 ];
