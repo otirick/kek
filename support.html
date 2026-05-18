@@ -144,33 +144,7 @@
 
     <script src="scripts/products.js"></script>
     <script src="scripts/cart.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // FAQ Accordion
-            const faqItems = document.querySelectorAll(".faq-item");
-
-            faqItems.forEach(item => {
-                const question = item.querySelector(".faq-question");
-
-                question.addEventListener("click", () => {
-                    item.classList.toggle("active");
-                });
-            });
-
-            // Support Form
-            const form = document.getElementById("support-form");
-            if (form) {
-                form.addEventListener("submit", function (event) {
-                    event.preventDefault();
-                    const formData = new FormData(form);
-                    const data = Object.fromEntries(formData.entries());
-                    console.log("Support form submitted:", data);
-                    alert("Ваш вопрос отправлен! Мы свяжемся с вами в ближайшее время.");
-                    form.reset();
-                });
-            }
-        });
-    </script>
+    <script src="scripts/info.js"></script>
 </body>
 
 </html>
