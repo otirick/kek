@@ -1,4 +1,4 @@
-// Состояние корзины
+// scripts/cart.js — Логика корзины
 let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
 function saveCart() {
@@ -6,7 +6,6 @@ function saveCart() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-// ... (existing code)
     const cart = document.querySelector(".cart");
     const cartButton = document.querySelector(".cartButton");
     const cartDropdown = document.querySelector(".cartDropdown");
@@ -33,14 +32,20 @@ document.addEventListener("DOMContentLoaded", function () {
         const btn = event.target.closest(".add-to-cart-btn");
         if (btn) {
             const productId = btn.dataset.productId;
-            if (productId) {
+            if (productId && window.addToCart) {
                 window.addToCart(productId);
             }
         }
     });
 
-    // Функция добавления в корзину
+    // Функция добавления в корзину (глобальная)
     window.addToCart = function (productId) {
+        // Ждём загрузки товаров, если нужно
+        if (!window.products?.length) {
+            document.addEventListener('products:loaded', () => addToCart(productId), { once: true });
+            return;
+        }
+
         const product = window.products.find(p => p.id === productId);
         if (product) {
             const currentTotal = cartItems.reduce((sum, item) => sum + item.quantity, 0);
@@ -61,7 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     function updateCartUI() {
-        // Обновление счетчика на кнопке корзины
         const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
         let badge = cartButton.querySelector(".cartBadge");
         if (!badge) {
@@ -72,7 +76,6 @@ document.addEventListener("DOMContentLoaded", function () {
         badge.textContent = totalItems;
         badge.style.display = totalItems > 0 ? "block" : "none";
 
-        // Обновление списка внутри выпадающего меню
         if (cartItems.length === 0) {
             cartDropdown.innerHTML = '<p>Корзина пуста</p>';
         } else {
@@ -96,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <button class="remove-from-cart" data-id="${item.id}">&times;</button>
                 `;
                 itemEl.querySelector('.cart-item-info').addEventListener('click', () => {
-                    window.location.href = `product.html?id=${item.id}`;
+                    window.location.href = `product-page.html?id=${item.id}`;
                 });
                 itemEl.querySelector('.remove-from-cart').addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -129,5 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Инициализация
     updateCartUI();
-});
 
+    // Обновляем корзину при загрузке товаров (на случай, если они изменились)
+    document.addEventListener('products:loaded', updateCartUI);
+});

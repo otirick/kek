@@ -1,19 +1,20 @@
+// scripts/checkout.js — Оформление заказа
+
 document.addEventListener("DOMContentLoaded", function () {
     const checkoutItemsList = document.getElementById("checkout-items-list");
     const checkoutTotalPrice = document.getElementById("checkout-total-price");
     const checkoutForm = document.getElementById("checkout-form");
 
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
     function saveCart() {
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }
 
-    // Load cart items from localStorage
-    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-
     if (cartItems.length === 0) {
         checkoutItemsList.innerHTML = '<p>Ваша корзина пуста</p>';
         checkoutTotalPrice.innerHTML = '<span>Итого:</span> <span>0 ₽</span>';
-        const submitBtn = checkoutForm.querySelector('.submit-order-btn');
+        const submitBtn = checkoutForm?.querySelector('.submit-order-btn');
         if (submitBtn) {
             submitBtn.disabled = true;
             submitBtn.style.opacity = '0.5';
@@ -33,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const itemEl = document.createElement('div');
             itemEl.className = 'checkout-item';
             itemEl.innerHTML = `
-                <div class="checkout-item-info" style="cursor: pointer;">
+                <div class="checkout-item-info">
                     <img src="${item.images[0]}" class="checkout-item-img" alt="${item.name}">
                     <div>
                         <div style="font-weight: 500;">${item.name}</div>
@@ -44,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
 
             itemEl.querySelector('.checkout-item-info').addEventListener('click', () => {
-                window.location.href = `product.html?id=${item.id}`;
+                window.location.href = `product-page.html?id=${item.id}`;
             });
 
             itemEl.querySelector('.remove-checkout-item').addEventListener('click', (e) => {
@@ -61,31 +62,65 @@ document.addEventListener("DOMContentLoaded", function () {
         checkoutTotalPrice.innerHTML = `<span>Итого:</span> <span>${formattedTotal}</span>`;
     }
 
-    // Initial render
     renderItems();
 
-    // Handle form submission
-    checkoutForm.addEventListener("submit", function (event) {
+    // Обработка отправки формы
+    checkoutForm?.addEventListener("submit", async function (event) {
         event.preventDefault();
+        
+        const submitBtn = checkoutForm.querySelector('.submit-order-btn');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Отправка...';
 
-        const formData = new FormData(checkoutForm);
-        const customerData = {
-            fullname: formData.get('fullname'),
-            address: formData.get('address'),
-            phone: formData.get('phone'),
-            email: formData.get('email'),
-        };
+        try {
+            const formData = new FormData(checkoutForm);
+            
+            let totalKopeks = 0;
+            const orderItems = cartItems.map(item => {
+                const priceNumeric = parseInt(item.price.replace(/[^\d]/g, ''), 10);
+                totalKopeks += priceNumeric * item.quantity;
+                return {
+                    id: item.id,
+                    name: item.name,
+                    quantity: item.quantity,
+                    price: priceNumeric
+                };
+            });
 
-        console.log("Order submitted:", {
-            customer: customerData, items: cartItems, total: checkoutTotalPrice.textContent
-        });
+            const payload = {
+                customer: {
+                    name: formData.get('fullname'),
+                    address: formData.get('address'),
+                    phone: formData.get('phone'),
+                    email: formData.get('email'),
+                    postalCode: formData.get('postalCode')
+                },
+                items: orderItems,
+                total: totalKopeks / 100
+            };
 
-        alert(`Спасибо за заказ, ${customerData.fullname}! Мы свяжемся с вами по номеру ${customerData.phone}.`);
-
-        // Clear cart
-        localStorage.removeItem('cartItems');
-
-        // Redirect to home page
-        window.location.href = 'index.html';
+            const response = await fetch('api/checkout.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                localStorage.removeItem('cartItems');
+                alert(`✅ Заказ #${result.order_id} оформлен!\nМы свяжемся с вами в ближайшее время.`);
+                window.location.href = 'index.html';
+            } else {
+                throw new Error(result.error || 'Ошибка сервера');
+            }
+            
+        } catch (error) {
+            console.error('❌ Ошибка оформления:', error);
+            alert('⚠️ Не удалось оформить заказ: ' + error.message + '\nПопробуйте позже или напишите нам в поддержку.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+        }
     });
 });

@@ -1,130 +1,81 @@
-const filterBtns = document.querySelectorAll('.filter-btn'); // верх + футер
-const catalogItemsContainer = document.getElementById('catalog-items');
-const searchInput = document.querySelector('.searchInput');
-const searchSubmitBtn = document.querySelector('.submitButton');
+// scripts/catalog.js — Отрисовка каталога
 
-function renderProducts(filter = 'all', searchQuery = '') {
+// Функция отрисовки товаров
+window.renderCatalog = function() {
+    const container = document.getElementById('catalog-items');
+    const filterBtns = document.querySelectorAll('.filter-btn');
 
-    if (!catalogItemsContainer) return;
+    if (!container || !window.products?.length) return;
 
-    catalogItemsContainer.innerHTML = '';
+    let activeFilter = 'all';
 
-    const allProducts = window.products || [];
+    function render(filter = 'all') {
+        container.innerHTML = '';
 
-    let filteredProducts = filter === 'all' ? allProducts : allProducts.filter(p => p.category === filter);
+        const filtered = filter === 'all'
+            ? window.products
+            : window.products.filter(p => p.category === filter);
 
-    if (searchQuery) {
-        const query = searchQuery.toLowerCase();
-        filteredProducts = filteredProducts.filter(p => p.name.toLowerCase().includes(query));
-    }
-
-    if (filteredProducts.length === 0) {
-        catalogItemsContainer.innerHTML = '<p style="text-align:center;padding:20px;">Ничего не найдено</p>';
-        return;
-    }
-
-    filteredProducts.forEach(product => {
-
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.dataset.category = product.category;
-
-        card.innerHTML = `
-            <div class="card-img">
-                <img src="${product.images[0]}" alt="${product.name}">
-            </div>
-
-            <div class="card-info">
-                <span class="name">${product.name}</span>
-                <span class="price">${product.price}</span>
-            </div>
-
-            <button class="add-to-cart-btn" data-product-id="${product.id}">
-                В корзину
-            </button>
-
-            <a href="product.html?id=${product.id}" class="card-link"></a>
-        `;
-
-        catalogItemsContainer.appendChild(card);
-    });
-}
-
-// ✔ главный обработчик (ОБЩИЙ для кнопок и футера)
-filterBtns.forEach(btn => {
-
-    btn.addEventListener('click', (e) => {
-
-        // ✔ вот это добавь
-        window.scrollTo({
-            top: 0, behavior: "smooth"
-        });
-
-        e.preventDefault();
-
-        const filter = btn.dataset.filter;
-
-        // убираем active только у верхних кнопок
-        document.querySelectorAll('.filter-btn:not(a)').forEach(b => {
-            b.classList.remove('active');
-        });
-
-        // если это верхняя кнопка — делаем active + двигаем slider
-        if (btn.tagName === 'BUTTON') {
-
-            btn.classList.add('active');
-
-            const slider = document.querySelector('.filter-slider');
-
-            if (slider) {
-                slider.style.width = btn.offsetWidth + 'px';
-                slider.style.left = btn.offsetLeft + 'px';
-            }
-        }
-
-        // если это футер — просто триггерим верхнюю кнопку
-        const topBtn = document.querySelector(`.filter-btn:not(a)[data-filter="${filter}"]`);
-
-        if (topBtn && btn.tagName === 'A') {
-            topBtn.click();
+        if (filtered.length === 0) {
+            container.innerHTML = '<p class="no-results">Товары не найдены</p>';
             return;
         }
 
-        const query = searchInput ? searchInput.value.trim() : '';
-        renderProducts(filter, query);
-    });
-
-});
-
-// search
-function handleSearch() {
-    const query = searchInput.value.trim();
-    const activeBtn = document.querySelector('.filter-btn.active');
-    const filter = activeBtn ? activeBtn.dataset.filter : 'all';
-    renderProducts(filter, query);
-}
-
-if (searchSubmitBtn) {
-    searchSubmitBtn.addEventListener('click', e => {
-        e.preventDefault();
-        handleSearch();
-    });
-}
-
-if (searchInput) {
-    searchInput.addEventListener('input', handleSearch);
-}
-
-// init slider
-document.addEventListener('DOMContentLoaded', () => {
-
-    const activeBtn = document.querySelector('.filter-btn.active');
-    const slider = document.querySelector('.filter-slider');
-
-    if (activeBtn && slider) {
-        slider.style.width = activeBtn.offsetWidth + 'px';
-        slider.style.left = activeBtn.offsetLeft + 'px';
+        filtered.forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'catalog-item';
+            card.dataset.category = product.category;
+            card.innerHTML = `
+                <a href="product-page.html?id=${product.id}">
+                    <div class="product-image">
+                        <img src="${product.images[0]}" alt="${product.name}" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <span class="product-price">${product.price}</span>
+                        <button class="add-to-cart-btn" data-product-id="${product.id}">В корзину</button>
+                    </div>
+                </a>
+            `;
+            container.appendChild(card);
+        });
     }
 
-    renderProducts();
+    // Обработчик фильтров
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            activeFilter = this.dataset.filter;
+            render(activeFilter);
+        });
+    });
+
+    // Первая отрисовка
+    render('all');
+};
+
+// Запускаем при загрузке DOM и при получении данных с сервера
+document.addEventListener('DOMContentLoaded', function() {
+    if (window.products?.length) {
+        window.renderCatalog();
+    } else {
+        document.addEventListener('products:loaded', () => window.renderCatalog(), { once: true });
+    }
+});
+
+// Поиск по каталогу (если есть поле поиска)
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.querySelector('.searchInput');
+    if (!searchInput) return;
+
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+        const items = document.querySelectorAll('.catalog-item');
+
+        items.forEach(item => {
+            const name = item.querySelector('.product-name')?.textContent.toLowerCase() || '';
+            item.style.display = name.includes(query) ? '' : 'none';
+        });
+    });
 });
