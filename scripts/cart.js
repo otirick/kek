@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Функция добавления в корзину
-    window.addToCart = function(productId) {
+    window.addToCart = function (productId) {
         const product = window.products.find(p => p.id === productId);
         if (product) {
             const currentTotal = cartItems.reduce((sum, item) => sum + item.quantity, 0);
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (existingItem) {
                 existingItem.quantity += 1;
             } else {
-                cartItems.push({ ...product, quantity: 1 });
+                cartItems.push({...product, quantity: 1});
             }
             saveCart();
             updateCartUI();

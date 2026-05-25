@@ -11,21 +11,15 @@ function renderProducts(filter = 'all', searchQuery = '') {
 
     const allProducts = window.products || [];
 
-    let filteredProducts =
-        filter === 'all'
-            ? allProducts
-            : allProducts.filter(p => p.category === filter);
+    let filteredProducts = filter === 'all' ? allProducts : allProducts.filter(p => p.category === filter);
 
     if (searchQuery) {
         const query = searchQuery.toLowerCase();
-        filteredProducts = filteredProducts.filter(p =>
-            p.name.toLowerCase().includes(query)
-        );
+        filteredProducts = filteredProducts.filter(p => p.name.toLowerCase().includes(query));
     }
 
     if (filteredProducts.length === 0) {
-        catalogItemsContainer.innerHTML =
-            '<p style="text-align:center;padding:20px;">Ничего не найдено</p>';
+        catalogItemsContainer.innerHTML = '<p style="text-align:center;padding:20px;">Ничего не найдено</p>';
         return;
     }
 
@@ -63,8 +57,7 @@ filterBtns.forEach(btn => {
 
         // ✔ вот это добавь
         window.scrollTo({
-            top: 0,
-            behavior: "smooth"
+            top: 0, behavior: "smooth"
         });
 
         e.preventDefault();
@@ -90,9 +83,7 @@ filterBtns.forEach(btn => {
         }
 
         // если это футер — просто триггерим верхнюю кнопку
-        const topBtn = document.querySelector(
-            `.filter-btn:not(a)[data-filter="${filter}"]`
-        );
+        const topBtn = document.querySelector(`.filter-btn:not(a)[data-filter="${filter}"]`);
 
         if (topBtn && btn.tagName === 'A') {
             topBtn.click();

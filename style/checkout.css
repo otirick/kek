@@ -1,110 +1,112 @@
-       .search{
-           visibility: hidden;
-       }
+.search {
+    visibility: hidden;
+}
 
-        h2{
-            margin-bottom: 20px;
-        }
-        .checkout-container {
-            display: flex;
-            gap: 40px;
-            padding: 40px 0;
-            align-items: flex-start;
-        }
+h2 {
+    margin-bottom: 20px;
+}
 
-        .checkout-form {
-            flex: 2;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            color: black;
-        }
+.checkout-container {
+    display: flex;
+    gap: 40px;
+    padding: 40px 0;
+    align-items: flex-start;
+}
 
-        .checkout-summary {
-            flex: 1;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            color: black;
-            position: sticky;
-            top: 100px;
-        }
+.checkout-form {
+    flex: 2;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    color: black;
+}
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+.checkout-summary {
+    flex: 1;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    color: black;
+    position: sticky;
+    top: 100px;
+}
 
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
+.form-group {
+    margin-bottom: 20px;
+}
 
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: 'Inter', sans-serif;
-        }
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
 
-        .checkout-items {
-            margin-bottom: 20px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 20px;
-        }
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+}
 
-        .checkout-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
+.checkout-items {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
 
-        .checkout-item-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+.checkout-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
 
-        .checkout-item-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 4px;
-        }
+.checkout-item-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-        .checkout-total {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 700;
-            font-size: 1.2em;
-            margin-top: 10px;
-        }
+.checkout-item-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+}
 
-        .submit-order-btn {
-            width: 100%;
-            padding: 15px;
-            background: #232323;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: background 0.3s;
-        }
+.checkout-total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 1.2em;
+    margin-top: 10px;
+}
 
-        .submit-order-btn:hover {
-            background: #404040;
-        }
+.submit-order-btn {
+    width: 100%;
+    padding: 15px;
+    background: #232323;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s;
+}
 
-        @media (max-width: 768px) {
-            .checkout-container {
-                flex-direction: column;
-            }
-            .checkout-summary {
-                position: static;
-                width: 100%;
-            }
-        }
+.submit-order-btn:hover {
+    background: #404040;
+}
+
+@media (max-width: 768px) {
+    .checkout-container {
+        flex-direction: column;
+    }
+
+    .checkout-summary {
+        position: static;
+        width: 100%;
+    }
+}

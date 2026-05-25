@@ -9,182 +9,182 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+            rel="stylesheet">
     <title>Prostranstvo</title>
 </head>
 
 <body>
-    <header class="header">
-        <div class="container header-inner">
+<header class="header">
+    <div class="container header-inner">
 
-<div class="left">
-                <a href="support.html">Поддержка</a>
-                <a href="otzivi.html">Отзывы</a>
+        <div class="left">
+            <a href="support.html">Поддержка</a>
+            <a href="otzivi.html">Отзывы</a>
+        </div>
+
+
+        <div class="logo">
+            <a href="index.html"><img src="img/logo1.png" alt=""></a>
+        </div>
+
+        <div class="right">
+
+            <div class="search">
+                <input type="checkbox" id="searchToggle" class="searchToggle"/>
+                <label for="searchToggle" class="searchButton"></label>
+                <input type="text" class="searchInput" placeholder="Поиск..."/>
+                <button class="submitButton"></button>
             </div>
 
 
-            <div class="logo">
-                <a href="index.html"><img src="img/logo1.png" alt=""></a>
-            </div>
-
-            <div class="right">
-
-                <div class="search">
-                    <input type="checkbox" id="searchToggle" class="searchToggle" />
-                    <label for="searchToggle" class="searchButton"></label>
-                    <input type="text" class="searchInput" placeholder="Поиск..." />
-                    <button class="submitButton"></button>
+            <div class="cart">
+                <div class="cartButton"></div>
+                <div class="cartDropdown">
+                    <p>Корзина пуста</p>
                 </div>
+            </div>
 
+        </div>
+    </div>
+</header>
 
-                <div class="cart">
-                    <div class="cartButton"></div>
-                    <div class="cartDropdown">
-                        <p>Корзина пуста</p>
+<main>
+    <div class="container">
+        <!-- Хлебные крошки -->
+        <nav class="breadcrumbs">
+            <a href="index.html">Главная</a>
+            <span>→</span>
+            <a href="index.html">Каталог</a>
+            <span>→</span>
+            <span class="current" id="breadcrumb-current">Загрузка...</span>
+        </nav>
+
+        <!-- Блок товара -->
+        <div class="product-page">
+            <div class="product-gallery">
+                <div class="product-main-img">
+                    <button class="gallery-arrow prev">&#10094;</button>
+                    <div class="main-img-wrapper">
+                        <img id="main-product-img" src="" alt="">
+                    </div>
+                    <button class="gallery-arrow next">&#10095;</button>
+                </div>
+                <div class="product-thumbnails" id="product-thumbnails">
+                    <!-- Thumbnails will be injected here -->
+                </div>
+            </div>
+
+            <div class="product-info">
+                <h1 class="product-title" id="product-title"></h1>
+                <span class="product-price" id="product-price"></span>
+
+                <!-- Выбор размера -->
+                <div class="size-selector">
+                    <label>Размер:</label>
+                    <div class="sizes" id="size-selector-container">
+                        <button class="size-btn" data-size="S">S</button>
+                        <button class="size-btn" data-size="M">M</button>
+                        <button class="size-btn active" data-size="L">L</button>
+                        <button class="size-btn" data-size="XL">XL</button>
+                        <button class="size-btn" data-size="XXL">XXL</button>
                     </div>
                 </div>
 
+                <button class="add-to-cart-btn product-add-btn" id="product-add-btn">В корзину</button>
+
+                <!-- Описание -->
+                <div class="product-details">
+                    <ul id="product-description-list">
+                        <!-- Description items will be injected here -->
+                    </ul>
+                </div>
             </div>
         </div>
-    </header>
 
-    <main>
-        <div class="container">
-            <!-- Хлебные крошки -->
-            <nav class="breadcrumbs">
-                <a href="index.html">Главная</a>
-                <span>→</span>
-                <a href="index.html">Каталог</a>
-                <span>→</span>
-                <span class="current" id="breadcrumb-current">Загрузка...</span>
-            </nav>
-
-            <!-- Блок товара -->
-            <div class="product-page">
-                <div class="product-gallery">
-                    <div class="product-main-img">
-                        <button class="gallery-arrow prev">&#10094;</button>
-                        <div class="main-img-wrapper">
-                            <img id="main-product-img" src="" alt="">
-                        </div>
-                        <button class="gallery-arrow next">&#10095;</button>
-                    </div>
-                    <div class="product-thumbnails" id="product-thumbnails">
-                        <!-- Thumbnails will be injected here -->
-                    </div>
-                </div>
-
-                <div class="product-info">
-                    <h1 class="product-title" id="product-title"></h1>
-                    <span class="product-price" id="product-price"></span>
-
-                    <!-- Выбор размера -->
-                    <div class="size-selector">
-                        <label>Размер:</label>
-                        <div class="sizes" id="size-selector-container">
-                            <button class="size-btn" data-size="S">S</button>
-                            <button class="size-btn" data-size="M">M</button>
-                            <button class="size-btn active" data-size="L">L</button>
-                            <button class="size-btn" data-size="XL">XL</button>
-                            <button class="size-btn" data-size="XXL">XXL</button>
-                        </div>
-                    </div>
-
-            <button class="add-to-cart-btn product-add-btn" id="product-add-btn">В корзину</button>
-
-                    <!-- Описание -->
-                    <div class="product-details">
-                        <ul id="product-description-list">
-                            <!-- Description items will be injected here -->
+        <!-- Раскрывающиеся блоки -->
+        <div class="product-accordion">
+            <div class="accordion-item">
+                <div class="accordion-title">Уход</div>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <ul id="product-care-list">
+                            <!-- Care items will be injected here -->
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <!-- Раскрывающиеся блоки -->
-            <div class="product-accordion">
-                <div class="accordion-item">
-                    <div class="accordion-title">Уход</div>
-                    <div class="accordion-content">
-                        <div class="accordion-inner">
-                            <ul id="product-care-list">
-                                <!-- Care items will be injected here -->
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-title">Доставка</div>
-                    <div class="accordion-content">
-                        <div class="accordion-inner">
-                            <ul id="product-delivery-list">
-                                <!-- Delivery items will be injected here -->
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-title">Обмен и возврат</div>
-                    <div class="accordion-content">
-                        <div class="accordion-inner">
-                            <p id="product-return-text"></p>
-                        </div>
+            <div class="accordion-item">
+                <div class="accordion-title">Доставка</div>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <ul id="product-delivery-list">
+                            <!-- Delivery items will be injected here -->
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <div class="container header-inner">
-            <div class="footer-top">
-                <div class="footer-col">
-                    <h3><a href="index.html"><img src="img/logo1.png"></a></h3>
-                    <p>© 2025 Prostranstvo. Все права защищены</p>
-                    <p>ИП Бубенцов И.А. ИНН: 213002160208</p>
-                    <p><a href="#">Пользовательское соглашение</a></p>
-                </div>
-                <div class="footer-col">
-                    <h3>Каталог</h3>
-                    <a href="index.html" class="filter-btn" data-filter="all">Все</a>
-                    <a href="index.html" class="filter-btn" data-filter="Odezda">Одежда</a>
-                    <a href="index.html" class="filter-btn" data-filter="tovari">Сопутствующие товары</a>
-                </div>
-                <div class="footer-col">
-                    <h3>Покупателям</h3>
-                    <a href="support.html">Поддержка</a>
-                    <a href="otzivi.html">Отзывы</a>
-                </div>
-                <div class="footer-col">
-                    <h3>Связь с нами</h3>
-                    <a href="mailto:Prostranstvo@gmail.com">Prostranstvo@gmail.com</a>
-                    <div class="social">
-                        <a href="#"><img src="img/tg1.png"></a>
-                        <a href="#"><img src="img/vk1.png"></a>
+            <div class="accordion-item">
+                <div class="accordion-title">Обмен и возврат</div>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <p id="product-return-text"></p>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
-
-    <!-- Модальное окно для фото -->
-    <div class="image-modal" id="imageModal">
-        <button class="modal-close">&times;</button>
-        <button class="modal-arrow modal-prev">&#10094;</button>
-        <button class="modal-arrow modal-next">&#10095;</button>
-        <div class="modal-img-wrapper">
-            <img src="" alt="" class="modal-img">
-        </div>
-        <div class="modal-counter">
-            <span class="modal-current">1</span> / <span class="modal-total">2</span>
         </div>
     </div>
+</main>
 
-    <script src="scripts/products.js"></script>
-    <script src="scripts/cart.js"></script>
-    <script src="scripts/product-page.js"></script>
+<footer class="footer">
+    <div class="container header-inner">
+        <div class="footer-top">
+            <div class="footer-col">
+                <h3><a href="index.html"><img src="img/logo1.png"></a></h3>
+                <p>© 2025 Prostranstvo. Все права защищены</p>
+                <p>ИП Бубенцов И.А. ИНН: 213002160208</p>
+                <p><a href="#">Пользовательское соглашение</a></p>
+            </div>
+            <div class="footer-col">
+                <h3>Каталог</h3>
+                <a href="index.html" class="filter-btn" data-filter="all">Все</a>
+                <a href="index.html" class="filter-btn" data-filter="Odezda">Одежда</a>
+                <a href="index.html" class="filter-btn" data-filter="tovari">Сопутствующие товары</a>
+            </div>
+            <div class="footer-col">
+                <h3>Покупателям</h3>
+                <a href="support.html">Поддержка</a>
+                <a href="otzivi.html">Отзывы</a>
+            </div>
+            <div class="footer-col">
+                <h3>Связь с нами</h3>
+                <a href="mailto:Prostranstvo@gmail.com">Prostranstvo@gmail.com</a>
+                <div class="social">
+                    <a href="#"><img src="img/tg1.png"></a>
+                    <a href="#"><img src="img/vk1.png"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Модальное окно для фото -->
+<div class="image-modal" id="imageModal">
+    <button class="modal-close">&times;</button>
+    <button class="modal-arrow modal-prev">&#10094;</button>
+    <button class="modal-arrow modal-next">&#10095;</button>
+    <div class="modal-img-wrapper">
+        <img src="" alt="" class="modal-img">
+    </div>
+    <div class="modal-counter">
+        <span class="modal-current">1</span> / <span class="modal-total">2</span>
+    </div>
+</div>
+
+<script src="scripts/products.js"></script>
+<script src="scripts/cart.js"></script>
+<script src="scripts/product-page.js"></script>
 </body>
 </html>
 

@@ -9,142 +9,143 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+            rel="stylesheet">
     <title>Поддержка - Prostranstvo</title>
 </head>
 
 <body>
-    <header class="header">
-        <div class="container header-inner">
-            <div class="left">
+<header class="header">
+    <div class="container header-inner">
+        <div class="left">
+            <a href="support.html">Поддержка</a>
+            <a href="otzivi.html">Отзывы</a>
+        </div>
+        <div class="logo">
+            <a href="index.html"><img src="img/logo1.png" alt=""></a>
+        </div>
+        <div class="right">
+            <div class="search">
+                <input type="checkbox" id="searchToggle" class="searchToggle"/>
+                <label for="searchToggle" class="searchButton"></label>
+                <input type="text" class="searchInput" placeholder="Поиск..."/>
+                <button class="submitButton"></button>
+            </div>
+            <div class="cart">
+                <div class="cartButton"></div>
+                <div class="cartDropdown">
+                    <p>Корзина пуста</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container support-section">
+        <div class="faq-container">
+            <h1>Часто задаваемые вопросы</h1>
+
+            <div class="faq-item">
+                <button class="faq-question">Как отследить мой заказ?</button>
+                <div class="faq-answer">
+                    <p>Наш менеджер отправит вам трек-номер в личном сообщении или придет письмо Вам на почту.
+                        Проверьте, пожалуйста, папку “Спам”. Если письма нет — напишите нам и мы решим ваш вопрос.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Сколько хранится мой заказ в пункте выдачи?</button>
+                <div class="faq-answer">
+                    <p>Срок хранения и у СДЭК, и у Почты России одинаковый — 14 дней (2 недели).</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Я могу получить заказ самостоятельно?</button>
+                <div class="faq-answer">
+                    <p>Да, после оплаты заказа мы можем отправить вам товар курьером. Услуги курьера оплачиваются вами.
+                        В этом случае заказ может быть доставлен в течение 1 дня.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Вы доставляете товары только по России?</button>
+                <div class="faq-answer">
+                    <p>Нет, мы отправляем заказы по всему миру. Если вы хотите узнать примерные сроки и стоимость
+                        доставки в вашу страну, напишите нам в личные сообщения — всё расскажем.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Как я могу оплатить заказ?</button>
+                <div class="faq-answer">
+                    <p>Вы можете оплатить товар банковской картой онлайн. Мы принимаем карты платёжных систем VISA,
+                        MasterCard и МИР.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-container">
+            <h2>Напишите нам</h2>
+            <form id="support-form">
+                <div class="form-group">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" id="name" name="name" required placeholder="Иван Иванов">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="example@mail.com">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Тема вопроса</label>
+                    <input type="text" id="subject" name="subject" required placeholder="Например: Доставка">
+                </div>
+                <div class="form-group">
+                    <label for="message">Сообщение</label>
+                    <textarea id="message" name="message" required placeholder="Ваш вопрос..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Отправить вопрос</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container header-inner">
+        <div class="footer-top">
+            <div class="footer-col">
+                <h3><a href="index.html"><img src="img/logo1.png"></a></h3>
+                <p>© 2025 Prostranstvo. Все права защищены</p>
+                <p>ИП Бубенцов И.А. ИНН: 213002160208</p>
+                <p><a href="#">Пользовательское соглашение</a></p>
+            </div>
+            <div class="footer-col">
+                <h3>Каталог</h3>
+                <a href="#" class="filter-btn" data-filter="all">Все</a>
+                <a href="#" class="filter-btn" data-filter="Odezda">Одежда</a>
+                <a href="#" class="filter-btn" data-filter="tovari">Сопутствующие товары</a>
+            </div>
+            <div class="footer-col">
+                <h3>Покупателям</h3>
                 <a href="support.html">Поддержка</a>
                 <a href="otzivi.html">Отзывы</a>
             </div>
-            <div class="logo">
-                <a href="index.html"><img src="img/logo1.png" alt=""></a>
-            </div>
-            <div class="right">
-                <div class="search">
-                    <input type="checkbox" id="searchToggle" class="searchToggle" />
-                    <label for="searchToggle" class="searchButton"></label>
-                    <input type="text" class="searchInput" placeholder="Поиск..." />
-                    <button class="submitButton"></button>
-                </div>
-                <div class="cart">
-                    <div class="cartButton"></div>
-                    <div class="cartDropdown">
-                        <p>Корзина пуста</p>
-                    </div>
+            <div class="footer-col">
+                <h3>Связь с нами</h3>
+                <a href="mailto:Prostranstvo@gmail.com">Prostranstvo@gmail.com</a>
+                <div class="social">
+                    <a href="#"><img src="img/tg1.png"></a>
+                    <a href="#"><img src="img/vk1.png"></a>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</footer>
 
-    <main>
-        <div class="container support-section">
-            <div class="faq-container">
-                <h1>Часто задаваемые вопросы</h1>
-
-                <div class="faq-item">
-                    <button class="faq-question">Как отследить мой заказ?</button>
-                    <div class="faq-answer">
-                        <p>Наш менеджер отправит вам трек-номер в личном сообщении или придет письмо Вам на почту. 
-                        Проверьте, пожалуйста, папку “Спам”. Если письма нет — напишите нам и мы решим ваш вопрос.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">Сколько хранится мой заказ в пункте выдачи?</button>
-                    <div class="faq-answer">
-                        <p>Срок хранения и у СДЭК, и у Почты России одинаковый — 14 дней (2 недели).</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">Я могу получить заказ самостоятельно?</button>
-                    <div class="faq-answer">
-                        <p>Да, после оплаты заказа мы можем отправить вам товар курьером. Услуги курьера оплачиваются вами. 
-                        В этом случае заказ может быть доставлен в течение 1 дня.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">Вы доставляете товары только по России?</button>
-                    <div class="faq-answer">
-                        <p>Нет, мы отправляем заказы по всему миру. Если вы хотите узнать примерные сроки и стоимость 
-                        доставки в вашу страну, напишите нам в личные сообщения — всё расскажем.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">Как я могу оплатить заказ?</button>
-                    <div class="faq-answer">
-                        <p>Вы можете оплатить товар банковской картой онлайн. Мы принимаем карты платёжных систем VISA, MasterCard и МИР.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="contact-container">
-                <h2>Напишите нам</h2>
-                <form id="support-form">
-                    <div class="form-group">
-                        <label for="name">Ваше имя</label>
-                        <input type="text" id="name" name="name" required placeholder="Иван Иванов">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required placeholder="example@mail.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Тема вопроса</label>
-                        <input type="text" id="subject" name="subject" required placeholder="Например: Доставка">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Сообщение</label>
-                        <textarea id="message" name="message" required placeholder="Ваш вопрос..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Отправить вопрос</button>
-                </form>
-            </div>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <div class="container header-inner">
-            <div class="footer-top">
-                <div class="footer-col">
-                    <h3><a href="index.html"><img src="img/logo1.png"></a></h3>
-                    <p>© 2025 Prostranstvo. Все права защищены</p>
-                    <p>ИП Бубенцов И.А. ИНН: 213002160208</p>
-                    <p><a href="#">Пользовательское соглашение</a></p>
-                </div>
-                <div class="footer-col">
-                    <h3>Каталог</h3>
-                    <a href="#" class="filter-btn" data-filter="all">Все</a>
-                    <a href="#" class="filter-btn" data-filter="Odezda">Одежда</a>
-                    <a href="#" class="filter-btn" data-filter="tovari">Сопутствующие товары</a>
-                </div>
-                <div class="footer-col">
-                    <h3>Покупателям</h3>
-                    <a href="support.html">Поддержка</a>
-                    <a href="otzivi.html">Отзывы</a>
-                </div>
-                <div class="footer-col">
-                    <h3>Связь с нами</h3>
-                    <a href="mailto:Prostranstvo@gmail.com">Prostranstvo@gmail.com</a>
-                    <div class="social">
-                        <a href="#"><img src="img/tg1.png"></a>
-                        <a href="#"><img src="img/vk1.png"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="scripts/products.js"></script>
-    <script src="scripts/cart.js"></script>
-    <script src="scripts/info.js"></script>
+<script src="scripts/products.js"></script>
+<script src="scripts/cart.js"></script>
+<script src="scripts/info.js"></script>
 </body>
 
 </html>

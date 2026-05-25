@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 6. --- UI Extras (Sizes, Accordion) ---
     const sizeBtns = document.querySelectorAll(".size-btn");
     sizeBtns.forEach(btn => {
-        btn.addEventListener("click", function() {
+        btn.addEventListener("click", function () {
             sizeBtns.forEach(b => b.classList.remove("active"));
             this.classList.add("active");
         });
@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const accordionTitles = document.querySelectorAll(".accordion-title");
     accordionTitles.forEach(title => {
-        title.addEventListener("click", function() {
+        title.addEventListener("click", function () {
             this.parentElement.classList.toggle("open");
         });
     });

@@ -77,16 +77,14 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         console.log("Order submitted:", {
-            customer: customerData,
-            items: cartItems,
-            total: checkoutTotalPrice.textContent
+            customer: customerData, items: cartItems, total: checkoutTotalPrice.textContent
         });
 
         alert(`Спасибо за заказ, ${customerData.fullname}! Мы свяжемся с вами по номеру ${customerData.phone}.`);
 
         // Clear cart
         localStorage.removeItem('cartItems');
-        
+
         // Redirect to home page
         window.location.href = 'index.html';
     });
