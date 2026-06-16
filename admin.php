@@ -138,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'], $_POST['n
                     <td><?= $date ?></td>
                     <td><?= htmlspecialchars($o['customer_name']) ?></td>
                     <td><?= htmlspecialchars($o['customer_phone']) ?><br>📧 <?= htmlspecialchars($o['customer_email'] ?: '—') ?></td>
-                    <td><strong><?= $total ?></strong></td>
+                    <td><strong><?= number_format(array_sum(array_map(fn($i) => $i['quantity'] * $i['price_at_purchase'], $items_map[$o['id']] ?? [])), 0, ',', ' ') ?> ₽</strong></td>
                     <td><span class="status <?= $st['cls'] ?>"><?= $st['label'] ?></span></td>
                     <td><button class="toggle-btn" onclick="toggle(<?= $o['id'] ?>)">Показать</button></td>
                     <td>
