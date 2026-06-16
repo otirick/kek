@@ -3,7 +3,7 @@ window.products = []; // Временная заглушка, чтобы ста�
 
 (async function loadProductsFromServer() {
     try {
-        const response = await fetch('api/products.php');
+        const response = await fetch('api/product.php');
         if (!response.ok) throw new Error('HTTP ' + response.status);
 
         const products = await response.json();
