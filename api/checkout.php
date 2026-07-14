@@ -12,12 +12,14 @@ if (!$data || empty($data['customer']) || empty($data['items'])) {
 
 $pdo->beginTransaction();
 try {
-    // Создаём заказ
-    $stmt = $pdo->prepare("INSERT INTO orders (customer_name, customer_email, customer_phone, total_amount) VALUES (?, ?, ?, ?)");
+    // Создаём заказ — ДОБАВЛЕНЫ customer_address и postal_code
+    $stmt = $pdo->prepare("INSERT INTO orders (customer_name, customer_email, customer_phone, customer_address, postal_code, total_amount) VALUES (?, ?, ?, ?, ?, ?)");
     $stmt->execute([
         $data['customer']['name'],
         $data['customer']['email'] ?? '',
         $data['customer']['phone'],
+        $data['customer']['address'] ?? '',
+        $data['customer']['postal_code'] ?? '',
         $data['total']
     ]);
     $orderId = $pdo->lastInsertId();

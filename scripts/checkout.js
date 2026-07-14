@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
             
             if (result.success) {
                 localStorage.removeItem('cartItems');
-                alert(`✅ Заказ #${result.order_id} оформлен!\nМы свяжемся с вами в ближайшее время.`);
+                alert(`Заказ оформлен!\nМы свяжемся с вами в ближайшее время.`);
                 window.location.href = 'index.html';
             } else {
                 throw new Error(result.error || 'Ошибка сервера');

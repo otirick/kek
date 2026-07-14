@@ -35,6 +35,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'], $_POST['n
     exit;
 }
 
+// --- Удаление заказа ---
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_order_id'])) {
+    $order_id = (int)$_POST['delete_order_id'];
+    $pdo->beginTransaction();
+    try {
+        // Возвращаем товары на склад
+        $items = $pdo->prepare("SELECT product_id, quantity FROM order_items WHERE order_id = ?");
+        $items->execute([$order_id]);
+        while ($item = $items->fetch()) {
+            $pdo->prepare("UPDATE products SET stock = stock + ? WHERE id = ?")
+                ->execute([$item['quantity'], $item['product_id']]);
+        }
+
+        // Удаляем позиции заказа
+        $pdo->prepare("DELETE FROM order_items WHERE order_id = ?")->execute([$order_id]);
+
+        // Удаляем сам заказ
+        $pdo->prepare("DELETE FROM orders WHERE id = ?")->execute([$order_id]);
+
+        $pdo->commit();
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        error_log('Delete order error: ' . $e->getMessage());
+    }
+    header('Location: ' . $_SERVER['PHP_SELF']);
+    exit;
+}
+
 // --- HTML/CSS ---
 ?>
 <!DOCTYPE html>
@@ -73,6 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'], $_POST['n
         .info-label { font-size: 12px; color: #64748b; }
         .info-val { font-weight: 500; }
         select { padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border); background: #fff; cursor: pointer; }
+        .action-cell { display: flex; gap: 6px; align-items: center; }
     </style>
 </head>
 <body>
@@ -102,12 +131,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'], $_POST['n
                     <th>Сумма</th>
                     <th style="width:120px">Статус</th>
                     <th style="width:100px">Товары</th>
-                    <th style="width:150px">Действия</th>
+                    <th style="width:220px">Действия</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                $orders = $pdo->query("SELECT id, customer_name, customer_phone, customer_email, total_amount, status, created_at FROM orders ORDER BY id DESC")->fetchAll();
+                $orders = $pdo->query("SELECT id, customer_name, customer_phone, customer_email, customer_address, postal_code, total_amount, status, created_at FROM orders ORDER BY id DESC")->fetchAll();
 
                 if (empty($orders)): ?>
                     <tr><td colspan="8" style="text-align:center; padding:40px; color:#64748b;">Заказов пока нет</td></tr>
@@ -137,19 +166,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'], $_POST['n
                     <td>#<?= $o['id'] ?></td>
                     <td><?= $date ?></td>
                     <td><?= htmlspecialchars($o['customer_name']) ?></td>
-                    <td><?= htmlspecialchars($o['customer_phone']) ?><br>📧 <?= htmlspecialchars($o['customer_email'] ?: '—') ?></td>
+                    <td><?= htmlspecialchars($o['customer_phone']) ?><br><?= htmlspecialchars($o['customer_email'] ?: '—') ?></td>
                     <td><strong><?= number_format(array_sum(array_map(fn($i) => $i['quantity'] * $i['price_at_purchase'], $items_map[$o['id']] ?? [])), 0, ',', ' ') ?> ₽</strong></td>
                     <td><span class="status <?= $st['cls'] ?>"><?= $st['label'] ?></span></td>
                     <td><button class="toggle-btn" onclick="toggle(<?= $o['id'] ?>)">Показать</button></td>
                     <td>
-                        <form method="POST" style="display:inline-block;">
-                            <input type="hidden" name="order_id" value="<?= $o['id'] ?>">
-                            <select name="new_status" onchange="this.form.submit()">
-                                <?php foreach ($status_map as $k => $v): ?>
-                                    <option value="<?= $k ?>" <?= $o['status']==$k?'selected':'' ?>><?= $v['label'] ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </form>
+                        <div class="action-cell">
+                            <form method="POST" style="display:inline-block;">
+                                <input type="hidden" name="order_id" value="<?= $o['id'] ?>">
+                                <select name="new_status" onchange="this.form.submit()">
+                                    <?php foreach ($status_map as $k => $v): ?>
+                                        <option value="<?= $k ?>" <?= $o['status']==$k?'selected':'' ?>><?= $v['label'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </form>
+                            <form method="POST" style="display:inline-block;"
+                                  onsubmit="return confirm('Удалить заказ #<?= $o['id'] ?>? Это действие необратимо!')">
+                                <input type="hidden" name="delete_order_id" value="<?= $o['id'] ?>">
+                                <button type="submit" class="btn btn-danger" style="padding:6px 10px; font-size:13px;" title="Удалить заказ">🗑</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 <tr class="details-row" id="row-<?= $o['id'] ?>">
@@ -158,7 +194,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'], $_POST['n
                             <div><div class="info-label">Адрес доставки</div><div class="info-val"><?= htmlspecialchars($o['customer_address'] ?? 'Не указан') ?></div></div>
                             <div><div class="info-label">Индекс</div><div class="info-val"><?= htmlspecialchars($o['postal_code'] ?? '—') ?></div></div>
                         </div>
-                        <div style="margin-top:12px; font-weight:500;">📦 Состав заказа:</div>
+                        <div style="margin-top:12px; font-weight:500;">Состав заказа:</div>
                         <?php if (!empty($items_map[$o['id']])):
                             foreach ($items_map[$o['id']] as $item):
                                 $sum = $item['quantity'] * $item['price_at_purchase'];
